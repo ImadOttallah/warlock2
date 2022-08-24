@@ -1,0 +1,32 @@
+{
+  "-MiBsfuTafbEQ7eAULxV" : {
+    "creatorId" : "1",
+    "firebaseKey" : "-MiBsfuTafbEQ7eAULxV",
+    "name" : "Gundar",
+    "image": "https://www.belloflostsouls.net/2014/10/whfb-tactics-dwarfs-lords-and-army-special-rules.html",
+    "type" : "Dwarf",
+    "actions" : "1",
+    "weapon" : "Axe/5/1D6",
+    "armour" : "1d6 Chain",
+    "adventuringSkills" : "6",
+    "stamina" : "6",
+    "notes" : "Intelligent",
+    "description " : "SHort and Ugly",
+    "castId": ""
+  },
+  "-MiBt86VzkC-EGmJnxjm" : {
+    "creatorId" : "1",
+    "firebaseKey" : "-MiBt86VzkC-EGmJnxjm",
+    "name" : "Elfin",
+    "image": "https://whfb.lexicanum.com/mediawiki/images/e/e4/WoodElfArcher.jpg",
+    "type" : "Elf",
+    "actions" : "1",
+    "weapon" : "Bow/6/1D6",
+    "armour" : "1d6 Leather",
+    "adventuringSkills" : "6",
+    "stamina" : "6",
+    "notes" : "Intelligent",
+    "description " : "Tall and Handsome",
+    "castId": ""
+  }
+}
