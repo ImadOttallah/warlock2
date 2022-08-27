@@ -4,7 +4,7 @@ import {
   Button, Form, Row, Col, FloatingLabel,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { createCharacters, getCharacters, updateCharacters } from '../../api/characters';
+import { createCharacters, getCharacters, updateCharacters } from '../../api/charactersData';
 import { useAuth } from '../../utils/context/authContext';
 
 const initalState = {

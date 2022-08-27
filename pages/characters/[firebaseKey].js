@@ -18,7 +18,7 @@ export default function ViewCharacters() {
         <Container>
           <Row xs={2}>
             <Col xs> Name: {characterDetails.name}</Col>
-            <Col xs>Image: {characterDetails.image}</Col>
+            <Col xs>Image:  <Card.Img variant="top" src={characterDetails.image} alt={characterDetails.name} style={{ height: '400px' }} /></Col>
           </Row>
           <Col xs>Community: {characterDetails.community}</Col>
           <Col xs>Career: {characterDetails.career}</Col>

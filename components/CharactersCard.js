@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import { ListGroup } from 'react-bootstrap';
-import { deleteCharacters } from '../api/characters';
+import { Card, Button } from 'react-bootstrap';
+import { deleteCharacters } from '../api/charactersData';
 
 function CharactersCard({ charactersObj, onUpdate }) {
   // FOR DELETE, WE NEED TO REMOVE THE BOOK AND HAVE THE VIEW RERENDER,
@@ -20,12 +18,10 @@ function CharactersCard({ charactersObj, onUpdate }) {
       <Card.Img variant="top" src={charactersObj.image} alt={charactersObj.name} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title>Name: {charactersObj.name}</Card.Title>
-        <Card.Text>
-          <ListGroup>
-            <ListGroup.Item>Career: {charactersObj.career}</ListGroup.Item>
-            <ListGroup.Item>Community: {charactersObj.community}</ListGroup.Item>
-          </ListGroup>
-        </Card.Text>
+        <ul className="list-group">
+          <li className="list-group-item">Career: {charactersObj.career}</li>
+          <li className="list-group-item">Community: {charactersObj.community}</li>
+        </ul>
         {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
         <Link href={`/characters/${charactersObj.firebaseKey}`} passHref>
           <Button variant="dark" className="m-2">VIEW</Button>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { getSingleCharacter } from '../../../api/characters';
+import { getSingleCharacter } from '../../../api/charactersData';
 import CharactersForm from '../../../components/forms/CharactersForm';
 
 export default function EditCharacters() {

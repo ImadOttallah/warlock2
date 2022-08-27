@@ -1,4 +1,4 @@
-import { getSingleCharacter } from './characters';
+import { getSingleCharacter } from './charactersData';
 
 const viewCharacterDetails = (characterFirebaseKey) => new Promise((resolve, reject) => {
   Promise.all([getSingleCharacter(characterFirebaseKey)])

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import CharactersCard from '../components/CharactersCard';
-import { getCharacters } from '../api/characters';
+import { getCharacters } from '../api/charactersData';
 
 function Characters() {
   // TODO: Set a state for books
