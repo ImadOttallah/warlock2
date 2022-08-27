@@ -20,3 +20,28 @@ a {
 body {
   background-color: blanchedalmond;
 }
+
+.labelSize{
+  font-size: 10px;
+}
+.form-floating>.form-control,
+.form-floating>.form-control-plaintext {
+  padding: 0rem 0.75rem;
+}
+
+.form-floating>.form-control,
+.form-floating>.form-control-plaintext,
+.form-floating>.form-select {
+  height: calc(2.5rem + 2px);
+  line-height: 1;
+}
+
+.form-floating>label {
+  padding: 0.5rem 0.75rem;
+}
+
+.card {
+  box-shadow: 0 0 10px 0 rgba(100, 100, 100, 0.66);
+  transform: translateZ(0);
+  display: flex;
+}
