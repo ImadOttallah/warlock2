@@ -82,7 +82,7 @@ function CharactersForm({ obj }) {
     } else {
       const payload = { ...formInput, uid: user.uid };
       createCharacters(payload).then(() => {
-        router.push('/');
+        router.push('/characters');
       });
     }
   };

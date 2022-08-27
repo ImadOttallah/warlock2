@@ -50,7 +50,7 @@ function CastForm({ obj }) {
     } else {
       const payload = { ...formInput, uid: user.uid };
       createCast(payload).then(() => {
-        router.push('/');
+        router.push('/cast');
       });
     }
   };
@@ -93,8 +93,8 @@ function CastForm({ obj }) {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridAdventuringSkills">
-          <FloatingLabel size="sm" controlId="floatingTextarea" label="Adventuring Skills" className="mb-1">
-            <Form.Control size="sm" type="adventuringSkills" placeholder="Adventuring Skills" name="adventuringSkills" value={formInput.stamina} onChange={handleChange} required />
+          <FloatingLabel size="sm" controlId="floatingTextarea" label="Skills" className="mb-1">
+            <Form.Control size="sm" type="number" placeholder="Skills" name="adventuringSkills" value={formInput.adventuringSkills} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
@@ -116,7 +116,7 @@ function CastForm({ obj }) {
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridNotes">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Notes" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Notes" name="notes" value={formInput.notes} onChange={handleChange} required />
+            <Form.Control size="sm" type="text" placeholder="Notes" name="notes" value={formInput.notes} onChange={handleChange} />
           </FloatingLabel>
         </Form.Group>
       </Row>

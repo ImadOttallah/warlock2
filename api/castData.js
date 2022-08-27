@@ -50,6 +50,12 @@ const getSingleCast = (firebaseKey) => new Promise((resolve, reject) => {
     .then((response) => resolve(response.data))
     .catch(reject);
 });
+const viewCastDetails = (castFirebaseKey) => new Promise((resolve, reject) => {
+  Promise.all([getSingleCast(castFirebaseKey)])
+    .then(([castObj]) => {
+      resolve({ ...castObj });
+    }).catch((error) => reject(error));
+});
 
 export {
   getCast,
@@ -58,4 +64,5 @@ export {
   updateCast,
   createCast,
   deleteCast,
+  viewCastDetails,
 };
