@@ -4,8 +4,9 @@ import {
   Button, Form, Row, Col, FloatingLabel,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { createCast, getCast, updateCast } from '../../api/castData';
+import { createCast, updateCast } from '../../api/castData';
 import { useAuth } from '../../utils/context/authContext';
+import getCastType from '../../api/castTypeData';
 
 const initalState = {
   name: '',
@@ -30,8 +31,7 @@ function CastForm({ obj }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    getCast(user.uid).then(setCast);
-    console.warn(cast);
+    getCastType(user.uid).then(setCast);
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
@@ -46,7 +46,7 @@ function CastForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      updateCast(formInput).then(() => router.push(`/characters/${obj.firebaseKey}`));
+      updateCast(formInput).then(() => router.push(`/cast/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createCast(payload).then(() => {
@@ -73,9 +73,28 @@ function CastForm({ obj }) {
 
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridType">
-          <FloatingLabel size="sm" controlId="floatingTextarea" label="Type" className="mb-1">
-            <Form.Control size="sm" type="text" placeholder="Type" name="type" value={formInput.type} onChange={handleChange} required />
-          </FloatingLabel>
+
+          {/* <Form.Control size="sm" type="text" placeholder="Type" name="type" value={formInput.type} onChange={handleChange} required /> */}
+          <Form.Select
+            aria-label="Type"
+            size="sm"
+            name="type"
+            onChange={handleChange}
+            className="mb-1"
+            required
+          >
+            <option value="">Select a Type</option>
+            {cast.map((castType) => (
+              <option
+                key={castType.firebaseKey}
+                value={castType.name}
+                selected={obj.type === castType.name}
+              >
+                {castType.name}
+              </option>
+            ))}
+          </Form.Select>
+
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridActions">
