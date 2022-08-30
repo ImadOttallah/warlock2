@@ -5,17 +5,22 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import CastCard from '../components/CastCard';
 import { getCast } from '../api/castData';
+import SearchCast from '../components/SearchCast';
 
 function Cast() {
   // TODO: Set a state for books
   const [cast, setCast] = useState([]);
+  const [filteredCast, setFilteredCast] = useState([]);
 
   // TODO: Get user ID using useAuth Hook
   const { user } = useAuth();
 
   // TODO: create a function that makes the API call to get all the books
   const getAllTheCast = () => {
-    getCast(user.uid).then(setCast);
+    getCast(user.uid).then((castsArray) => {
+      setCast(castsArray);
+      setFilteredCast(castsArray);
+    });
   };
 
   // TODO: make the call to the API to get all the books on component render
@@ -25,12 +30,18 @@ function Cast() {
 
   return (
     <div className="text-center my-4">
-      <Link href="/cast/new" passHref>
-        <Button variant="dark">Create a Cast</Button>
-      </Link>
+      <h1>CAST</h1>
+      <div>
+        <Link href="/cast/new" passHref>
+          <Button variant="dark">Create a Cast</Button>
+        </Link>
+      </div>
+      <div>
+        <SearchCast cast={cast} setFilteredCast={setFilteredCast} />
+      </div>
       <div className="d-flex flex-wrap">
         {/* TODO: map over books here using BookCard component */}
-        {cast.map((casts) => (
+        {filteredCast.map((casts) => (
           <CastCard key={casts.firebaseKey} castObj={casts} onUpdate={getAllTheCast} />
         ))}
       </div>

@@ -55,17 +55,30 @@ const initalState = {
   spells: '',
 };
 
-function CharactersForm({ obj }) {
+export default function CharactersForm({ obj }) {
   const [formInput, setFormInput] = useState(initalState);
   const [characters, setCharacters] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
+  // const [select1, setSelect1] = useState('test');
+  // const [input1, setInput1] = useState('');
+  // const [input2, setInput2] = useState('');
 
   useEffect(() => {
     getCharacters(user.uid).then(setCharacters);
     console.warn(characters);
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
+
+  // function select1Function(e) {
+  //   setInput1(e.target.value);
+  //   if (select1 === 'test') {
+  //     setInput2(e.target.value);
+  //     document.getElementById('input2').disabled = true;
+  //   } else {
+  //     document.getElementById('input2').disabled = false;
+  //   }
+  // }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -89,6 +102,15 @@ function CharactersForm({ obj }) {
   return (
     <Form className="form-floating" onSubmit={handleSubmit}>
       <h2 className="text-black mt-2">{obj.firebaseKey ? 'Update' : 'Create'} Character</h2>
+
+      {/* <select value={select1} onChange={(e) => setSelect1(e.target.value)}>
+        <option value="test">Test</option>
+
+      </select>
+
+      <input type="text" value={input1} onChange={select1Function} />
+      <input type="text" value={input2} onChange={(e) => setInput2(e.target.value)} id="input2" /> */}
+
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridName">
           <FloatingLabel controlId="floatingTextarea" label="Name" className="mb-1">
@@ -159,7 +181,7 @@ function CharactersForm({ obj }) {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridBargain">
-          <FloatingLabel size="sm" controlId="floatingTextarea" label="Baragin" className="mb-1">
+          <FloatingLabel size="sm" controlId="floatingTextarea" label="Bargin" className="mb-1">
             <Form.Control size="sm" type="number" placeholder="Baragin" name="bargainSkill" value={formInput.bargainSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
@@ -446,5 +468,3 @@ CharactersForm.propTypes = {
 CharactersForm.defaultProps = {
   obj: initalState,
 };
-
-export default CharactersForm;
