@@ -2,24 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
-import { deleteCast } from '../api/castData';
+import { updateCast } from '../../api/castData';
+import { getCampaignCast } from '../../api/campaignsData';
 
-function CastCard({ castObj, onUpdate }) {
-  const deleteThisCast = () => {
-    if (window.confirm(`Delete ${castObj.name}?`)) {
-      deleteCast(castObj.firebaseKey).then(() => onUpdate());
+function CastToken({ castObj, onUpdate }) {
+  const removeThisCast = () => {
+    const newCastObject = { ...castObj, campaign_id: 'null' };
+    console.warn(newCastObject);
+    if (window.confirm(`Remove ${castObj.name}?`)) {
+      updateCast(newCastObject).then(() => {
+        getCampaignCast(castObj.campaign_id).then(() => onUpdate());
+      });
     }
   };
 
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={castObj.image} alt={castObj.name} style={{ height: '400px' }} />
+    <Card border="dark" style={{ width: '16rem' }}>
       <Card.Body>
         <Card.Title>Name: {castObj.name}</Card.Title>
-        <ul className="list-group">
-          <li className="list-group-item">Type: {castObj.type}</li>
-          <li className="list-group-item">Stamina: {castObj.stamina}</li>
-        </ul>
+        <li className="list-group-item">Type: {castObj.type}</li>
+        <li className="list-group-item">Stamina: {castObj.stamina}</li>
         {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
         <Link href={`/cast/${castObj.firebaseKey}`} passHref>
           <Button size="sm" variant="dark" className="m-2">VIEW</Button>
@@ -28,19 +30,20 @@ function CastCard({ castObj, onUpdate }) {
         <Link href={`/cast/edit/${castObj.firebaseKey}`} passHref>
           <Button size="sm" variant="dark">EDIT</Button>
         </Link>
-        <Button size="sm" variant="danger" onClick={deleteThisCast} className="m-2">
-          DELETE
+        <Button size="sm" variant="danger" onClick={removeThisCast} className="m-2">
+          REMOVE
         </Button>
       </Card.Body>
     </Card>
   );
 }
 
-CastCard.propTypes = {
+CastToken.propTypes = {
   castObj: PropTypes.shape({
     image: PropTypes.string,
     name: PropTypes.string,
     type: PropTypes.string,
+    campaign_id: PropTypes.string,
     community: PropTypes.string,
     stamina: PropTypes.string,
     firebaseKey: PropTypes.string,
@@ -48,4 +51,4 @@ CastCard.propTypes = {
   onUpdate: PropTypes.func.isRequired,
 };
 
-export default CastCard;
+export default CastToken;

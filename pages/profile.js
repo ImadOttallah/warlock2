@@ -5,6 +5,7 @@ import { signOut } from '../utils/auth';
 
 export default function Profile() {
   const { user } = useAuth();
+  console.warn(user);
   return (
     <div>
       <User
@@ -13,7 +14,7 @@ export default function Profile() {
         image={user.photoURL}
         lastLogin={user.metadata.lastSignInTime}
       />
-      <button type="button" onClick={signOut}>Sign Out</button>
+      <button size="sm" type="button" onClick={signOut}>Sign Out</button>
     </div>
   );
 }

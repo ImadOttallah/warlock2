@@ -13,7 +13,6 @@ const initalState = {
   dateCreated: '',
   description: '',
   notes: '',
-  firebaseKey: '',
 };
 
 function CampaignsForm({ obj }) {
@@ -36,12 +35,18 @@ function CampaignsForm({ obj }) {
     }));
   };
 
+  const date = () => {
+    const d = new Date();
+    const dateValue = d.toLocaleString();
+    return dateValue;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateCampaigns(formInput).then(() => router.push(`/campaigns/${obj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = { ...formInput, dateCreated: date(), uid: user.uid };
       createCampaigns(payload).then(() => {
         router.push('/campaigns');
       });
@@ -81,7 +86,7 @@ function CampaignsForm({ obj }) {
       </Row>
       <hr />
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
-      <Button variant="dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Campaign</Button>
+      <Button size="sm" variant="dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Campaign</Button>
     </Form>
   );
 }

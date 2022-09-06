@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { createCast, updateCast } from '../../api/castData';
 import { useAuth } from '../../utils/context/authContext';
 import getCastType from '../../api/castTypeData';
+import { getCampaigns } from '../../api/campaignsData';
 
 const initalState = {
   name: '',
@@ -15,23 +16,26 @@ const initalState = {
   adventuringSkills: '',
   armour: '',
   castId: '',
+  campaign_id: '',
   creatorId: '',
   description: '',
   notes: '',
   stamina: '',
   type: '',
   weapon: '',
-  firebaseKey: '',
 };
 
 function CastForm({ obj }) {
   const [formInput, setFormInput] = useState(initalState);
   const [cast, setCast] = useState([]);
+  const [campaigns, setCampaigns] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
     getCastType(user.uid).then(setCast);
+    if (obj.firebaseKey) setFormInput(obj);
+    getCampaigns(user.uid).then(setCampaigns);
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
@@ -73,28 +77,34 @@ function CastForm({ obj }) {
 
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridType">
-
           {/* <Form.Control size="sm" type="text" placeholder="Type" name="type" value={formInput.type} onChange={handleChange} required /> */}
-          <Form.Select
-            aria-label="Type"
-            size="sm"
-            name="type"
-            onChange={handleChange}
-            className="mb-1"
-            required
-          >
+          <Form.Select aria-label="Campaign" size="sm" name="campaign_id" value={formInput.campaign_id} onChange={handleChange} className="mb-1" required>
+            <option value="">Select a Campaign</option>
+            <option>none</option>
+            {campaigns.map((campaign) => (
+              <option key={campaign.firebaseKey} value={campaign.firebaseKey}>
+                {campaign.name}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+      </Row>
+
+      <Row className="mb-2">
+        <Form.Group as={Col} controlId="formGridType">
+          {/* <Form.Control size="sm" type="text" placeholder="Type" name="type" value={formInput.type} onChange={handleChange} required /> */}
+          <Form.Select aria-label="Type" size="sm" name="type" value={formInput.type} onChange={handleChange} className="mb-1" required>
             <option value="">Select a Type</option>
             {cast.map((castType) => (
               <option
                 key={castType.firebaseKey}
                 value={castType.name}
-                selected={obj.type === castType.name}
+                // selected={obj.type === castType.name}
               >
                 {castType.name}
               </option>
             ))}
           </Form.Select>
-
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridActions">
@@ -141,7 +151,9 @@ function CastForm({ obj }) {
       </Row>
       <hr />
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
-      <Button variant="dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Cast</Button>
+      <Button size="sm" variant="dark" type="submit">
+        {obj.firebaseKey ? 'Update' : 'Create'} Cast
+      </Button>
     </Form>
   );
 }
@@ -159,6 +171,7 @@ CastForm.propTypes = {
     stamina: PropTypes.string,
     type: PropTypes.string,
     weapon: PropTypes.string,
+    campaign_id: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
 };

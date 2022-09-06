@@ -45,3 +45,8 @@ body {
   transform: translateZ(0);
   display: flex;
 }
+
+.Card.Img {
+  width: '50vw';
+  height: '30vh';
+}
