@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Button } from 'react-bootstrap';
+import {
+  Button, Col, Container, Row,
+} from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import CastCard from '../components/CastCard';
 import { getCast } from '../api/castData';
-import SearchCast from '../components/SearchCast';
+import SearchCast from '../components/search/SearchCast';
 
 function Cast() {
   // TODO: Set a state for books
@@ -31,14 +33,16 @@ function Cast() {
   return (
     <div className="text-center my-4">
       <h1>CAST</h1>
-      <div>
-        <Link href="/cast/new" passHref>
-          <Button variant="dark">Create a Cast</Button>
-        </Link>
-      </div>
-      <div>
-        <SearchCast cast={cast} setFilteredCast={setFilteredCast} />
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <Link href="/cast/new" passHref>
+              <Button size="sm" variant="dark">Create Cast</Button>
+            </Link>
+          </Col>
+          <Col> <SearchCast cast={cast} setFilteredCast={setFilteredCast} /></Col>
+        </Row>
+      </Container>
       <div className="d-flex flex-wrap">
         {/* TODO: map over books here using BookCard component */}
         {filteredCast.map((casts) => (

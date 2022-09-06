@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import {
   Row, Col, Container, Card,
 } from 'react-bootstrap';
-import viewCharacterDetails from '../../api/mergedData';
+import { viewCharacterDetails } from '../../api/mergedData';
 
 export default function ViewCharacters() {
   const [characterDetails, setCharacterDetails] = useState({});
@@ -17,15 +17,21 @@ export default function ViewCharacters() {
       <Card style={{ margin: '10px' }}>
         <Container>
           <Row xs={2}>
-            <Col xs> Name: {characterDetails.name}</Col>
-            <Col xs>Image:  <Card.Img variant="top" src={characterDetails.image} alt={characterDetails.name} style={{ height: '400px' }} /></Col>
+            <Col xs>
+              <ul className="list-unstyled">
+                <li>Name: {characterDetails.name}</li>
+                <li>Community: {characterDetails.community}</li>
+                <li>Career: {characterDetails.career}</li>
+                <li>Background: {characterDetails.background}</li>
+                <li>Stamina: {characterDetails.stamina}</li>
+                <li> Luck: {characterDetails.luck}</li>
+                <li>Pluck: {characterDetails.pluck}</li>
+              </ul>
+            </Col>
+
+            <Col xs><Card.Img variant="top" src={characterDetails.image} alt={characterDetails.name} style={{ height: '200px' }} /></Col>
           </Row>
-          <Col xs>Community: {characterDetails.community}</Col>
-          <Col xs>Career: {characterDetails.career}</Col>
-          <Col xs>Background: {characterDetails.background}</Col>
-          <Col xs>Stamina: {characterDetails.stamina}</Col>
-          <Col xs>Luck: {characterDetails.luck}</Col>
-          <Col xs>Pluck: {characterDetails.pluck}</Col>
+
           <hr />
           <Row xs={4}>
             <Col xs>Appraise: {characterDetails.appraiseSkill}</Col>

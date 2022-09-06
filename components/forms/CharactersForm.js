@@ -4,8 +4,9 @@ import {
   Button, Form, Row, Col, FloatingLabel,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { createCharacters, getCharacters, updateCharacters } from '../../api/charactersData';
+import { createCharacters, updateCharacters } from '../../api/charactersData';
 import { useAuth } from '../../utils/context/authContext';
+import { getCampaigns } from '../../api/campaignsData';
 
 const initalState = {
   name: '',
@@ -13,6 +14,7 @@ const initalState = {
   community: '',
   background: '',
   career: '',
+  campaign_id: '',
   stamina: '',
   luck: '',
   pluck: '',
@@ -53,11 +55,13 @@ const initalState = {
   traits: '',
   notes: '',
   spells: '',
+  campaign_name: '',
 };
 
 export default function CharactersForm({ obj }) {
   const [formInput, setFormInput] = useState(initalState);
-  const [characters, setCharacters] = useState([]);
+  // const [characters, setCharacters] = useState([]);
+  const [campaigns, setCampaigns] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
   // const [select1, setSelect1] = useState('test');
@@ -65,8 +69,8 @@ export default function CharactersForm({ obj }) {
   // const [input2, setInput2] = useState('');
 
   useEffect(() => {
-    getCharacters(user.uid).then(setCharacters);
-    console.warn(characters);
+    getCampaigns(user.uid).then(setCampaigns);
+
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
@@ -122,6 +126,32 @@ export default function CharactersForm({ obj }) {
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Image" className="mb-1">
             <Form.Control size="sm" type="url" placeholder="Image" name="image" value={formInput.image} onChange={handleChange} required />
           </FloatingLabel>
+        </Form.Group>
+      </Row>
+      <Row className="mb-2">
+        <Form.Group as={Col} controlId="formGridType">
+
+          {/* <Form.Control size="sm" type="text" placeholder="Type" name="type" value={formInput.type} onChange={handleChange} required /> */}
+          <Form.Select
+            aria-label="Campaign"
+            size="sm"
+            name="campaign_id"
+            value={formInput.campaign_id}
+            onChange={handleChange}
+            className="mb-1"
+            required
+          >
+            <option value="">Select a Campaign</option>
+            <option>none</option>
+            {campaigns.map((campaign) => (
+              <option
+                key={campaign.firebaseKey}
+                value={campaign.firebaseKey}
+              >
+                {campaign.name}
+              </option>
+            ))}
+          </Form.Select>
         </Form.Group>
       </Row>
 
@@ -410,7 +440,7 @@ export default function CharactersForm({ obj }) {
       </Row>
       <hr />
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
-      <Button variant="dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Character</Button>
+      <Button size="sm" variant="dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Character</Button>
     </Form>
   );
 }
@@ -421,6 +451,8 @@ CharactersForm.propTypes = {
     community: PropTypes.string,
     background: PropTypes.string,
     career: PropTypes.string,
+    campaign_id: PropTypes.string,
+    campaign_name: PropTypes.string,
     stamina: PropTypes.string,
     luck: PropTypes.string,
     pluck: PropTypes.string,

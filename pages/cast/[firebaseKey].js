@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import {
   Row, Col, Container, Card,
 } from 'react-bootstrap';
-import { viewCastDetails } from '../../api/castData';
+import { viewCastDetails } from '../../api/mergedData';
 
 export default function ViewCast() {
   const [castDetails, setCastDetails] = useState({});

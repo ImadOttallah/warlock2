@@ -2,36 +2,50 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Button } from 'react-bootstrap';
+import {
+  Button, Col, Container, Row,
+} from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { getCampaigns } from '../api/campaignsData';
 import CampaignsCard from '../components/CampaignCard';
+import SearchCampaigns from '../components/search/SearchCampaigns';
 
 function Campaigns() {
-  // TODO: Set a state for books
   const [campaign, setCampaign] = useState([]);
-
-  // TODO: Get user ID using useAuth Hook
+  const [filteredCampaign, setFilteredCampaign] = useState([]);
   const { user } = useAuth();
 
-  // TODO: create a function that makes the API call to get all the books
+  // TODO: create a function that makes the API call to get all the Campaigns
   const getAllTheCampaigns = () => {
-    getCampaigns(user.uid).then(setCampaign);
+    getCampaigns(user.uid).then((campaignsArray) => {
+      setCampaign(campaignsArray);
+      setFilteredCampaign(campaignsArray);
+    });
   };
 
-  // TODO: make the call to the API to get all the books on component render
+  // TODO: make the call to the API to get all the Campaigns on component render
   useEffect(() => {
     getAllTheCampaigns();
   }, []);
 
   return (
     <div className="text-center my-4">
-      <Link href="/campaigns/new" passHref>
-        <Button variant="dark">Create a Campaign</Button>
-      </Link>
+      <h1>CAMPAIGNS</h1>
+      <Container>
+        <Row>
+          <Col>
+            <Link href="/campaigns/new" passHref>
+              <Button size="sm" variant="dark">Create a Campaign</Button>
+            </Link>
+          </Col>
+          <Col> <SearchCampaigns campaign={campaign} setFilteredCampaign={setFilteredCampaign} /></Col>
+        </Row>
+      </Container>
+      {/* <Link href="/campaigns/new" passHref>
+        <Button size="sm" variant="dark">Create a Campaign</Button>
+      </Link> */}
       <div className="d-flex flex-wrap">
-        {/* TODO: map over books here using BookCard component */}
-        {campaign.map((campaigns) => (
+        {filteredCampaign.map((campaigns) => (
           <CampaignsCard key={campaigns.firebaseKey} campaignsObj={campaigns} onUpdate={getAllTheCampaigns} />
         ))}
       </div>

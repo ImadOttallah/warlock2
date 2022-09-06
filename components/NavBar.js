@@ -18,11 +18,11 @@ export default function NavBar() {
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul className="navbar-nav me-auto">
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link passHref href="/campaigns">
                 <Nav.Link>Campaigns</Nav.Link>
               </Link>
-            </li> */}
+            </li>
             <li className="nav-item">
               <Link passHref href="/characters">
                 <Nav.Link>Characters</Nav.Link>

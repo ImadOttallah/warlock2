@@ -1,22 +1,26 @@
 import React from 'react';
+import { Button, Image } from 'react-bootstrap';
 import { signIn } from '../utils/auth';
 
 function Signin() {
   return (
     <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
+      className="text-center d-flex flex-column align-content-center"
       style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
+        display: 'flex',
+        alignItems: 'center',
+        height: '100vh',
       }}
     >
-      <h1>Welcome to Warlock Grimroire!</h1>
-      <p>Click the button below to login!</p>
-      <button type="button" className="btn btn-primary btn-lg copy-btn" onClick={signIn}>
-        Sign In
-      </button>
+      <div>
+        <Image src="/./images/warlock.png" alt="" height={600} width={500} />
+        <div>
+          <Button type="button" className="btn btn-dark btn-sm copy-btn" onClick={signIn}>
+            Sign In
+          </Button>
+        </div>
+      </div>
+
     </div>
   );
 }

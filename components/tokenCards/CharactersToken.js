@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
-import { deleteCharacters } from '../api/charactersData';
+import { deleteCharacters } from '../../api/charactersData';
 
-function CharactersCard({ charactersObj, onUpdate }) {
+function CharactersToken({ charactersObj, onUpdate }) {
   // FOR DELETE, WE NEED TO REMOVE THE BOOK AND HAVE THE VIEW RERENDER,
   // SO WE PASS THE FUNCTION FROM THE PARENT THAT GETS THE BOOKS
   const deleteThisCharacter = () => {
@@ -12,39 +12,34 @@ function CharactersCard({ charactersObj, onUpdate }) {
       deleteCharacters(charactersObj.firebaseKey).then(() => onUpdate());
     }
   };
-
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={charactersObj.image} alt={charactersObj.name} style={{ height: '400px' }} />
+    <Card border="dark" style={{ width: '16rem' }}>
       <Card.Body>
         <Card.Title>Name: {charactersObj.name}</Card.Title>
-        <ul className="list-group">
+        <Card.Text>
           <li className="list-group-item">Career: {charactersObj.career}</li>
           <li className="list-group-item">Community: {charactersObj.community}</li>
-          <li className="list-group-item">Campaign: {charactersObj.campaign_name}</li>
-        </ul>
-        {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
-        <Link href={`/characters/${charactersObj.firebaseKey}`} passHref>
-          <Button size="sm" variant="dark" className="m-2">VIEW</Button>
-        </Link>
-        {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
-        <Link href={`/characters/edit/${charactersObj.firebaseKey}`} passHref>
-          <Button size="sm" variant="dark">EDIT</Button>
-        </Link>
-        <Button size="sm" variant="danger" onClick={deleteThisCharacter} className="m-2">
-          DELETE
-        </Button>
+          <Link href={`/characters/${charactersObj.firebaseKey}`} passHref>
+            <Button size="sm" variant="dark" className="m-2">VIEW</Button>
+          </Link>
+          {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
+          <Link href={`/characters/edit/${charactersObj.firebaseKey}`} passHref>
+            <Button size="sm" variant="dark">EDIT</Button>
+          </Link>
+          <Button size="sm" variant="danger" onClick={deleteThisCharacter} className="m-2">
+            DELETE
+          </Button>
+        </Card.Text>
       </Card.Body>
     </Card>
   );
 }
 
-CharactersCard.propTypes = {
+CharactersToken.propTypes = {
   charactersObj: PropTypes.shape({
     image: PropTypes.string,
     name: PropTypes.string,
     career: PropTypes.string,
-    campaign_name: PropTypes.string,
     community: PropTypes.string,
     stamina: PropTypes.string,
     campaign_id: PropTypes.string,
@@ -53,4 +48,4 @@ CharactersCard.propTypes = {
   onUpdate: PropTypes.func.isRequired,
 };
 
-export default CharactersCard;
+export default CharactersToken;

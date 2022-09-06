@@ -22,13 +22,13 @@ function CampaignsCard({ campaignsObj, onUpdate }) {
         </ul>
         {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
         <Link href={`/campaigns/${campaignsObj.firebaseKey}`} passHref>
-          <Button variant="dark" className="m-2">VIEW</Button>
+          <Button size="sm" variant="dark" className="m-2">VIEW</Button>
         </Link>
         {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
         <Link href={`/campaigns/edit/${campaignsObj.firebaseKey}`} passHref>
-          <Button variant="dark">EDIT</Button>
+          <Button size="sm" variant="dark">EDIT</Button>
         </Link>
-        <Button variant="danger" onClick={deleteThisCampaign} className="m-2">
+        <Button size="sm" variant="danger" onClick={deleteThisCampaign} className="m-2">
           DELETE
         </Button>
       </Card.Body>

@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Button } from 'react-bootstrap';
+import {
+  Button, Col, Container, Row,
+} from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import CharactersCard from '../components/CharactersCard';
 import { getCharacters } from '../api/charactersData';
-import SearchCharacters from '../components/SearchCharacters';
+import SearchCharacters from '../components/search/SearchCharacters';
 
 function Characters() {
   // TODO: Set a state for books
@@ -32,12 +34,16 @@ function Characters() {
     <div className="text-center my-4">
       <h1>CHARACTERS</h1>
       <div>
-        <Link href="/characters/new" passHref>
-          <Button variant="dark">Create a Character</Button>
-        </Link>
-      </div>
-      <div>
-        <SearchCharacters characters={characters} setFilteredCharacters={setFilteredCharacters} />
+        <Container>
+          <Row>
+            <Col>
+              <Link href="/characters/new" passHref>
+                <Button size="sm" variant="dark">Create a Character</Button>
+              </Link>
+            </Col>
+            <Col><SearchCharacters characters={characters} setFilteredCharacters={setFilteredCharacters} /></Col>
+          </Row>
+        </Container>
       </div>
       <div className="d-flex flex-wrap">
         {/* TODO: map over books here using BookCard component */}

@@ -50,11 +50,16 @@ const getSingleCampaign = (firebaseKey) => new Promise((resolve, reject) => {
     .then((response) => resolve(response.data))
     .catch(reject);
 });
-const viewCampaignDetails = (campaignsFirebaseKey) => new Promise((resolve, reject) => {
-  Promise.all([deleteSingleCampaign(campaignsFirebaseKey)])
-    .then(([campaignsObj]) => {
-      resolve({ ...campaignsObj });
-    }).catch((error) => reject(error));
+// TODO: GET A SINGLE CAMPAIGN'S CHARACTERS
+const getCampaignCharacters = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/characters.json?orderBy="campaign_id"&equalTo="${firebaseKey}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+const getCampaignCast = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/cast.json?orderBy="campaign_id"&equalTo="${firebaseKey}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
 });
 
 export {
@@ -64,5 +69,6 @@ export {
   updateCampaigns,
   createCampaigns,
   deleteCampaigns,
-  viewCampaignDetails,
+  getCampaignCharacters,
+  getCampaignCast,
 };
