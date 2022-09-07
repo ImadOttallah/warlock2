@@ -6,7 +6,6 @@ import { updateCast } from '../../api/castData';
 function CastToken({ castObj, onUpdate }) {
   const removeThisCast = () => {
     const newCastObject = { ...castObj, campaign_id: '' };
-    console.warn(newCastObject);
     if (window.confirm(`Remove ${castObj.name}?`)) {
       updateCast(newCastObject).then(() => onUpdate());
     }

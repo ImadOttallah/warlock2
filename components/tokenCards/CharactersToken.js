@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
-import { deleteCharacters } from '../../api/charactersData';
+import { updateCharacters } from '../../api/charactersData';
 
 function CharactersToken({ charactersObj, onUpdate }) {
-  // FOR DELETE, WE NEED TO REMOVE THE BOOK AND HAVE THE VIEW RERENDER,
-  // SO WE PASS THE FUNCTION FROM THE PARENT THAT GETS THE BOOKS
-  const deleteThisCharacter = () => {
-    if (window.confirm(`Delete ${charactersObj.name}?`)) {
-      deleteCharacters(charactersObj.firebaseKey).then(() => onUpdate());
+  const removeThisCharacter = () => {
+    const newCharacterObject = { ...charactersObj, campaign_id: '' };
+    if (window.confirm(`Remove ${charactersObj.name}?`)) {
+      updateCharacters(newCharacterObject).then(() => onUpdate());
     }
   };
   return (
@@ -26,8 +25,8 @@ function CharactersToken({ charactersObj, onUpdate }) {
           <Link href={`/characters/edit/${charactersObj.firebaseKey}`} passHref>
             <Button size="sm" variant="dark">EDIT</Button>
           </Link>
-          <Button size="sm" variant="danger" onClick={deleteThisCharacter} className="m-2">
-            DELETE
+          <Button size="sm" variant="danger" onClick={removeThisCharacter} className="m-2">
+            REMOVE
           </Button>
         </Card.Text>
       </Card.Body>
