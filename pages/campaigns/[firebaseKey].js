@@ -4,7 +4,6 @@ import {
   Row, Col, Container, Card,
 } from 'react-bootstrap';
 import { viewCampaignDetails } from '../../api/mergedData';
-import { getCampaignCharacters } from '../../api/campaignsData';
 import CharactersToken from '../../components/tokenCards/CharactersToken';
 import CastToken from '../../components/tokenCards/CastToken';
 
@@ -12,11 +11,11 @@ export default function ViewCampaigns() {
   const [campaignDetails, setCampaignDetails] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
-  const removeCast = () => {
+  const removeFunction = () => {
     viewCampaignDetails(firebaseKey).then(setCampaignDetails);
   };
   useEffect(() => {
-    removeCast();
+    removeFunction();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -38,13 +37,13 @@ export default function ViewCampaigns() {
           <hr />
           <Row xs={1}>
             <Col xs> Characters: {campaignDetails.characters?.map((character) => (
-              <CharactersToken key={character.firebaseKey} charactersObj={character} onUpdate={getCampaignCharacters} />))}
+              <CharactersToken key={character.firebaseKey} charactersObj={character} onUpdate={removeFunction} />))}
             </Col>
           </Row>
           <hr />
           <Row xs={1}>
             <Col xs>Cast: {campaignDetails.casts?.map((casts) => (
-              <CastToken key={casts.firebaseKey} castObj={casts} onUpdate={removeCast} />))}
+              <CastToken key={casts.firebaseKey} castObj={casts} onUpdate={removeFunction} />))}
             </Col>
           </Row>
         </Container>
