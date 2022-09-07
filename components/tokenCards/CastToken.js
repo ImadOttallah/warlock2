@@ -1,18 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
 import { updateCast } from '../../api/castData';
-import { getCampaignCast } from '../../api/campaignsData';
 
 function CastToken({ castObj, onUpdate }) {
   const removeThisCast = () => {
-    const newCastObject = { ...castObj, campaign_id: 'null' };
+    const newCastObject = { ...castObj, campaign_id: '' };
     console.warn(newCastObject);
     if (window.confirm(`Remove ${castObj.name}?`)) {
-      updateCast(newCastObject).then(() => {
-        getCampaignCast(castObj.campaign_id).then(() => onUpdate());
-      });
+      updateCast(newCastObject).then(() => onUpdate());
     }
   };
 
