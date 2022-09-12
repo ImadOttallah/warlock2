@@ -50,3 +50,22 @@ body {
   width: '50vw';
   height: '30vh';
 }
+
+.tokenDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tabColor {
+  color: black;
+  border: 1px solid #dee2e6;
+  border-top: transparent;
+  padding: 15px;
+}
+.characterSheet {
+  width: 20rem;
+  background-size: 20rem;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-image: url(/./images/scroll.png);
+}

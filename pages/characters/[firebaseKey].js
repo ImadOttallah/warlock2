@@ -12,6 +12,7 @@ export default function ViewCharacters() {
   useEffect(() => {
     viewCharacterDetails(firebaseKey).then(setCharacterDetails);
   }, [firebaseKey]);
+
   return (
     <>
       <Card style={{ margin: '10px' }}>

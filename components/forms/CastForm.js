@@ -109,7 +109,7 @@ function CastForm({ obj }) {
 
         <Form.Group as={Col} controlId="formGridActions">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Actions" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Actions" name="actions" value={formInput.actions} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Actions" name="actions" value={formInput.actions} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
@@ -123,25 +123,24 @@ function CastForm({ obj }) {
 
         <Form.Group as={Col} controlId="formGridAdventuringSkills">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Skills" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Skills" name="adventuringSkills" value={formInput.adventuringSkills} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Skills" name="adventuringSkills" value={formInput.adventuringSkills} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridArmour">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Armour" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Armour" name="armour" value={formInput.armour} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Armour" name="armour" value={formInput.armour} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridStamina">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Stamina" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Stamina" name="stamina" value={formInput.stamina} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Stamina" name="stamina" value={formInput.stamina} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
 
       <hr />
-      <h2 className="text-black mt-2">Adventuring Skills</h2>
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridNotes">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Notes" className="mb-1">

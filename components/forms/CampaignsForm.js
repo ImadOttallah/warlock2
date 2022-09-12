@@ -25,6 +25,7 @@ function CampaignsForm({ obj }) {
     getCampaigns(user.uid).then(setCampaign);
     console.warn(campaign);
     if (obj.firebaseKey) setFormInput(obj);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [obj, user]);
 
   const handleChange = (e) => {

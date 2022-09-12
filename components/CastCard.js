@@ -15,7 +15,7 @@ function CastCard({ castObj, onUpdate }) {
     <Card style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" src={castObj.image} alt={castObj.name} style={{ height: '400px' }} />
       <Card.Body>
-        <Card.Title>Name: {castObj.name}</Card.Title>
+        <Card.Title>{castObj.name}</Card.Title>
         <ul className="list-group">
           <li className="list-group-item">Type: {castObj.type}</li>
           <li className="list-group-item">Stamina: {castObj.stamina}</li>

@@ -14,7 +14,7 @@ function CastToken({ castObj, onUpdate }) {
   return (
     <Card border="dark" style={{ width: '16rem' }}>
       <Card.Body>
-        <Card.Title>Name: {castObj.name}</Card.Title>
+        <Card.Title>{castObj.name}</Card.Title>
         <li className="list-group-item">Type: {castObj.type}</li>
         <li className="list-group-item">Stamina: {castObj.stamina}</li>
         {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}

@@ -33,6 +33,7 @@ function Characters() {
   return (
     <div className="text-center my-4">
       <h1>CHARACTERS</h1>
+      <title>Characters</title>
       <div>
         <Container>
           <Row>

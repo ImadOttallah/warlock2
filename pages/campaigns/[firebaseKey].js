@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import {
   Row, Col, Container, Card,
 } from 'react-bootstrap';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 import { viewCampaignDetails } from '../../api/mergedData';
 import CharactersToken from '../../components/tokenCards/CharactersToken';
 import CastToken from '../../components/tokenCards/CastToken';
@@ -10,6 +12,7 @@ import CastToken from '../../components/tokenCards/CastToken';
 export default function ViewCampaigns() {
   const [campaignDetails, setCampaignDetails] = useState({});
   const router = useRouter();
+  console.warn(campaignDetails);
   const { firebaseKey } = router.query;
   const removeFunction = () => {
     viewCampaignDetails(firebaseKey).then(setCampaignDetails);
@@ -32,20 +35,39 @@ export default function ViewCampaigns() {
           </Row>
           <hr />
           <Row xs={1}>
-            <Col xs>Notes: {campaignDetails.notes}</Col>
+            <Tabs
+              defaultActiveKey="profile"
+              id="fill-tab-example"
+              className="mb-3"
+              fill
+            >
+              <Tab eventKey="characters" title="Characters">
+                <Col className="tokenDisplay" xs>{campaignDetails.characters?.map((character) => (
+                  <CharactersToken key={character.firebaseKey} charactersObj={character} onUpdate={removeFunction} />))}
+                </Col>
+              </Tab>
+              <Tab eventKey="cast" title="Cast">
+                <div className="tokenDisplay">
+                  <Col className="tokenDisplay" xs>{campaignDetails.casts?.map((casts) => (
+                    <CastToken key={casts.firebaseKey} castObj={casts} onUpdate={removeFunction} />))}
+                  </Col>
+                </div>
+              </Tab>
+              <Tab eventKey="npc" title="Cast">
+                <div className="tokenDisplay">
+                  <Col className="tokenDisplay" xs>{campaignDetails.casts?.map((casts) => (
+                    <CastToken key={casts.firebaseKey} castObj={casts} onUpdate={removeFunction} />))}
+                  </Col>
+                </div>
+              </Tab>
+              <Tab eventKey="notes" title="Notes">
+                <Row xs={1}>
+                  <Col xs>Notes: {campaignDetails.notes}</Col>
+                </Row>
+              </Tab>
+            </Tabs>
           </Row>
           <hr />
-          <Row xs={1}>
-            <Col xs> Characters: {campaignDetails.characters?.map((character) => (
-              <CharactersToken key={character.firebaseKey} charactersObj={character} onUpdate={removeFunction} />))}
-            </Col>
-          </Row>
-          <hr />
-          <Row xs={1}>
-            <Col xs>Cast: {campaignDetails.casts?.map((casts) => (
-              <CastToken key={casts.firebaseKey} castObj={casts} onUpdate={removeFunction} />))}
-            </Col>
-          </Row>
         </Container>
 
       </Card>

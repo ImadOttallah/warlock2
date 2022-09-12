@@ -17,7 +17,7 @@ export default function ViewCast() {
       <Card style={{ margin: '10px' }}>
         <Container>
           <Row xs={2}>
-            <Col xs> Name: {castDetails.name}</Col>
+            <Col xs>{castDetails.name}</Col>
             <Col xs>Image:  <Card.Img variant="top" src={castDetails.image} alt={castDetails.name} style={{ height: '400px' }} /></Col>
           </Row>
           <Col xs>Type: {castDetails.type}</Col>
