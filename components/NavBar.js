@@ -34,11 +34,6 @@ export default function NavBar() {
                 <Nav.Link>Cast</Nav.Link>
               </Link>
             </li>
-            <li className="nav-search">
-              <Link passHref href="/cast">
-                <Nav.Link>Cast</Nav.Link>
-              </Link>
-            </li>
           </ul>
           <UserProfile />
         </div>
