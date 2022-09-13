@@ -15,7 +15,7 @@ function CampaignsCard({ campaignsObj, onUpdate }) {
     <Card style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" src={campaignsObj.image} alt={campaignsObj.name} style={{ height: '400px' }} />
       <Card.Body>
-        <Card.Title>: {campaignsObj.name}</Card.Title>
+        <Card.Title> {campaignsObj.name}</Card.Title>
         <ul className="list-group">
           <li className="list-group-item">Type: {campaignsObj.description}</li>
           <li className="list-group-item">Date Created: {campaignsObj.dateCreated}</li>
