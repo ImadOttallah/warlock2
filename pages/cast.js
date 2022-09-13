@@ -40,6 +40,11 @@ function Cast() {
               <Button size="sm" variant="dark">Create Cast</Button>
             </Link>
           </Col>
+          <Col>
+            <Link href="/newRandomCast/randomCast" passHref>
+              <Button size="sm" variant="dark">Random Cast</Button>
+            </Link>
+          </Col>
           <Col> <SearchCast cast={cast} setFilteredCast={setFilteredCast} /></Col>
         </Row>
       </Container>

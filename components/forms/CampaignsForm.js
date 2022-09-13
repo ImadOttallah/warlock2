@@ -85,6 +85,17 @@ function CampaignsForm({ obj }) {
           </FloatingLabel>
         </Form.Group>
       </Row>
+      <Form.Check
+        type="switch"
+        id="public"
+        name="public"
+        label="Is This Campaign Public?"
+        checked={formInput.public}
+        onChange={(e) => setFormInput((prevState) => ({
+          ...prevState,
+          public: e.target.checked,
+        }))}
+      />
       <hr />
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
       <Button size="sm" variant="dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Campaign</Button>
