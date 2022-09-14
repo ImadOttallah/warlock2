@@ -5,29 +5,29 @@ import {
   Button, Col, Container, Row,
 } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
-import CastCard from '../components/CastCard';
-import { getCast } from '../api/castData';
-import SearchCast from '../components/search/SearchCast';
+import { getNpc } from '../api/npcData';
+import NpcCard from '../components/NpcCard';
+import SearchNpc from '../components/search/SearchNpc';
 
-function Cast() {
+function Npc() {
   // TODO: Set a state for books
-  const [cast, setCast] = useState([]);
-  const [filteredCast, setFilteredCast] = useState([]);
+  const [npc, setNpc] = useState([]);
+  const [filteredNpc, setFilteredNpc] = useState([]);
 
   // TODO: Get user ID using useAuth Hook
   const { user } = useAuth();
 
   // TODO: create a function that makes the API call to get all the books
-  const getAllTheCast = () => {
-    getCast(user.uid).then((castsArray) => {
-      setCast(castsArray);
-      setFilteredCast(castsArray);
+  const getAllTheNpc = () => {
+    getNpc(user.uid).then((npcArray) => {
+      setNpc(npcArray);
+      setFilteredNpc(npcArray);
     });
   };
 
   // TODO: make the call to the API to get all the books on component render
   useEffect(() => {
-    getAllTheCast();
+    getAllTheNpc();
   }, []);
 
   return (
@@ -35,21 +35,21 @@ function Cast() {
       <Container>
         <Row>
           <Col>
-            <Link href="/cast/new" passHref>
-              <Button size="sm" variant="dark">Create Cast</Button>
+            <Link href="/npc/new" passHref>
+              <Button size="sm" variant="dark">Create Npc</Button>
             </Link>
           </Col>
-          <Col> <SearchCast cast={cast} setFilteredCast={setFilteredCast} /></Col>
+          <Col> <SearchNpc npc={npc} setFilteredNpc={setFilteredNpc} /></Col>
         </Row>
       </Container>
       <div className="d-flex flex-wrap">
         {/* TODO: map over books here using BookCard component */}
-        {filteredCast.map((casts) => (
-          <CastCard key={casts.firebaseKey} castObj={casts} onUpdate={getAllTheCast} />
+        {filteredNpc.map((npcs) => (
+          <NpcCard key={npcs.firebaseKey} npcObj={npcs} onUpdate={getAllTheNpc} />
         ))}
       </div>
     </div>
   );
 }
 
-export default Cast;
+export default Npc;

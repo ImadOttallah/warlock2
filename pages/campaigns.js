@@ -30,7 +30,6 @@ function Campaigns() {
 
   return (
     <div className="text-center my-4">
-      <h1>CAMPAIGNS</h1>
       <Container>
         <Row>
           <Col>

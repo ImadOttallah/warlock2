@@ -8,11 +8,11 @@ import Tabs from 'react-bootstrap/Tabs';
 import { viewCampaignDetails } from '../../api/mergedData';
 import CharactersToken from '../../components/tokenCards/CharactersToken';
 import CastToken from '../../components/tokenCards/CastToken';
+import NpcToken from '../../components/tokenCards/NpcToken';
 
 export default function ViewCampaigns() {
   const [campaignDetails, setCampaignDetails] = useState({});
   const router = useRouter();
-  console.warn(campaignDetails);
   const { firebaseKey } = router.query;
   const removeFunction = () => {
     viewCampaignDetails(firebaseKey).then(setCampaignDetails);
@@ -53,10 +53,10 @@ export default function ViewCampaigns() {
                   </Col>
                 </div>
               </Tab>
-              <Tab eventKey="npc" title="Cast">
+              <Tab eventKey="npc" title="Npc">
                 <div className="tokenDisplay">
-                  <Col className="tokenDisplay" xs>{campaignDetails.casts?.map((casts) => (
-                    <CastToken key={casts.firebaseKey} castObj={casts} onUpdate={removeFunction} />))}
+                  <Col className="tokenDisplay" xs>{campaignDetails.npcs?.map((npc) => (
+                    <NpcToken key={npc.firebaseKey} npcObj={npc} onUpdate={removeFunction} />))}
                   </Col>
                 </div>
               </Tab>

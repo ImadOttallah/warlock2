@@ -3,14 +3,14 @@ import { useRouter } from 'next/router';
 import {
   Row, Col, Container, Card,
 } from 'react-bootstrap';
-import { viewCastDetails } from '../../api/mergedData';
+import { viewNpcDetails } from '../../api/mergedData';
 
 export default function ViewCast() {
   const [castDetails, setCastDetails] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
   useEffect(() => {
-    viewCastDetails(firebaseKey).then(setCastDetails);
+    viewNpcDetails(firebaseKey).then(setCastDetails);
   }, [firebaseKey]);
   return (
     <>
