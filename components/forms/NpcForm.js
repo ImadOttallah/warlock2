@@ -4,10 +4,10 @@ import {
   Button, Form, Row, Col, FloatingLabel,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { createCast, updateCast } from '../../api/castData';
 import { useAuth } from '../../utils/context/authContext';
-import getCastType from '../../api/typeData';
 import { getCampaigns } from '../../api/campaignsData';
+import { createNpc, updateNpc } from '../../api/npcData';
+import { getNpcType } from '../../api/typeData';
 
 const initalState = {
   name: '',
@@ -25,15 +25,15 @@ const initalState = {
   weapon: '',
 };
 
-function CastForm({ obj }) {
+function NpcForm({ obj }) {
   const [formInput, setFormInput] = useState(initalState);
-  const [cast, setCast] = useState([]);
+  const [npc, setNpc] = useState([]);
   const [campaigns, setCampaigns] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
-    getCastType(user.uid).then(setCast);
+    getNpcType(user.uid).then(setNpc);
     if (obj.firebaseKey) setFormInput(obj);
     getCampaigns(user.uid).then(setCampaigns);
     if (obj.firebaseKey) setFormInput(obj);
@@ -49,17 +49,17 @@ function CastForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      updateCast(formInput).then(() => router.push(`/cast/${obj.firebaseKey}`));
+      updateNpc(formInput).then(() => router.push(`/npc/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
-      createCast(payload).then(() => {
-        router.push('/cast');
+      createNpc(payload).then(() => {
+        router.push('/npc');
       });
     }
   };
   return (
     <Form className="form-floating" onSubmit={handleSubmit}>
-      <h2 className="text-black mt-2">{obj.firebaseKey ? 'Update' : 'Create'} Cast</h2>
+      <h2 className="text-black mt-2">{obj.firebaseKey ? 'Update' : 'Create'} Npc</h2>
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridName">
           <FloatingLabel controlId="floatingTextarea" label="Name" className="mb-1">
@@ -94,13 +94,13 @@ function CastForm({ obj }) {
           {/* <Form.Control size="sm" type="text" placeholder="Type" name="type" value={formInput.type} onChange={handleChange} required /> */}
           <Form.Select aria-label="Type" size="sm" name="type" value={formInput.type} onChange={handleChange} className="mb-1" required>
             <option value="">Select a Type</option>
-            {cast.map((castType) => (
+            {npc.map((npcType) => (
               <option
-                key={castType.firebaseKey}
-                value={castType.name}
+                key={npcType.firebaseKey}
+                value={npcType.name}
                 // selected={obj.type === castType.name}
               >
-                {castType.name}
+                {npcType.name}
               </option>
             ))}
           </Form.Select>
@@ -151,7 +151,7 @@ function CastForm({ obj }) {
         type="switch"
         id="public"
         name="public"
-        label="Is This Cast Public?"
+        label="Is This Npc Public?"
         checked={formInput.public}
         onChange={(e) => setFormInput((prevState) => ({
           ...prevState,
@@ -161,12 +161,12 @@ function CastForm({ obj }) {
       <hr />
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
       <Button size="sm" variant="dark" type="submit">
-        {obj.firebaseKey ? 'Update' : 'Create'} Cast
+        {obj.firebaseKey ? 'Update' : 'Create'} Npc
       </Button>
     </Form>
   );
 }
-CastForm.propTypes = {
+NpcForm.propTypes = {
   obj: PropTypes.shape({
     actions: PropTypes.string,
     adventuringSkills: PropTypes.string,
@@ -185,8 +185,8 @@ CastForm.propTypes = {
   }),
 };
 
-CastForm.defaultProps = {
+NpcForm.defaultProps = {
   obj: initalState,
 };
 
-export default CastForm;
+export default NpcForm;

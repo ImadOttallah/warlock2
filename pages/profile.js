@@ -5,7 +5,7 @@ import { signOut } from '../utils/auth';
 
 export default function Profile() {
   const { user } = useAuth();
-  console.warn(user);
+  // console.warn(user);
   return (
     <div>
       <User

@@ -3,21 +3,21 @@ import { useRouter } from 'next/router';
 import {
   Row, Col, Container, Card,
 } from 'react-bootstrap';
-import { viewCastDetails } from '../../api/mergedData';
+import { viewNpcDetails } from '../../api/mergedData';
 
 export default function ViewCast() {
   const [castDetails, setCastDetails] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
   useEffect(() => {
-    viewCastDetails(firebaseKey).then(setCastDetails);
+    viewNpcDetails(firebaseKey).then(setCastDetails);
   }, [firebaseKey]);
   return (
     <>
       <Card style={{ margin: '10px' }}>
         <Container>
           <Row xs={2}>
-            <Col xs> Name: {castDetails.name}</Col>
+            <Col xs>{castDetails.name}</Col>
             <Col xs>Image:  <Card.Img variant="top" src={castDetails.image} alt={castDetails.name} style={{ height: '400px' }} /></Col>
           </Row>
           <Col xs>Type: {castDetails.type}</Col>

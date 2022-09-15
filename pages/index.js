@@ -27,7 +27,7 @@ export default function ImageSwapper() {
   return (
     <>
       <div
-        className="text-center d-flex flex-column justify-content-center align-content-center"
+        className="text-center d-flex flex-column justify-content-center characterSheet align-content-center"
         style={{
           height: '90vh',
           padding: '30px',
@@ -37,9 +37,7 @@ export default function ImageSwapper() {
       >
         <Image alt="Images" src={images[currentIndex]} />
 
-        <div>
-          <p>hasdfdasdahgsgdfasfdashfgdsash</p>
-        </div>
+        <p>hasdfdasdahgsgdfasfdashfg</p>
       </div>
     </>
   );

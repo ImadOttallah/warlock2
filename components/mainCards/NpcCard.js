@@ -2,33 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
-import { deleteCast } from '../api/castData';
+import { deleteNpc } from '../../api/npcData';
 
-function CastCard({ castObj, onUpdate }) {
-  const deleteThisCast = () => {
-    if (window.confirm(`Delete ${castObj.name}?`)) {
-      deleteCast(castObj.firebaseKey).then(() => onUpdate());
+function NpcCard({ npcObj, onUpdate }) {
+  const deleteThisNpc = () => {
+    if (window.confirm(`Delete ${npcObj.name}?`)) {
+      deleteNpc(npcObj.firebaseKey).then(() => onUpdate());
     }
   };
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={castObj.image} alt={castObj.name} style={{ height: '400px' }} />
+      <Card.Img variant="top" src={npcObj.image} alt={npcObj.name} style={{ height: '400px' }} />
       <Card.Body>
-        <Card.Title>Name: {castObj.name}</Card.Title>
+        <Card.Title>{npcObj.name}</Card.Title>
         <ul className="list-group">
-          <li className="list-group-item">Type: {castObj.type}</li>
-          <li className="list-group-item">Stamina: {castObj.stamina}</li>
+          <li className="list-group-item">Type: {npcObj.type}</li>
+          <li className="list-group-item">Stamina: {npcObj.stamina}</li>
         </ul>
         {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
-        <Link href={`/cast/${castObj.firebaseKey}`} passHref>
+        <Link href={`/npc/${npcObj.firebaseKey}`} passHref>
           <Button size="sm" variant="dark" className="m-2">VIEW</Button>
         </Link>
         {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
-        <Link href={`/cast/edit/${castObj.firebaseKey}`} passHref>
+        <Link href={`/npc/edit/${npcObj.firebaseKey}`} passHref>
           <Button size="sm" variant="dark">EDIT</Button>
         </Link>
-        <Button size="sm" variant="danger" onClick={deleteThisCast} className="m-2">
+        <Button size="sm" variant="danger" onClick={deleteThisNpc} className="m-2">
           DELETE
         </Button>
       </Card.Body>
@@ -36,8 +36,8 @@ function CastCard({ castObj, onUpdate }) {
   );
 }
 
-CastCard.propTypes = {
-  castObj: PropTypes.shape({
+NpcCard.propTypes = {
+  npcObj: PropTypes.shape({
     image: PropTypes.string,
     name: PropTypes.string,
     type: PropTypes.string,
@@ -48,4 +48,4 @@ CastCard.propTypes = {
   onUpdate: PropTypes.func.isRequired,
 };
 
-export default CastCard;
+export default NpcCard;

@@ -14,7 +14,7 @@ function CharactersToken({ charactersObj, onUpdate }) {
   return (
     <Card border="dark" style={{ width: '16rem' }}>
       <Card.Body>
-        <Card.Title>Name: {charactersObj.name}</Card.Title>
+        <Card.Title>{charactersObj.name}</Card.Title>
         <Card.Text>
           <li className="list-group-item">Career: {charactersObj.career}</li>
           <li className="list-group-item">Community: {charactersObj.community}</li>

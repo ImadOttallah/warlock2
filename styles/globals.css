@@ -21,6 +21,20 @@ body {
   background-color: blanchedalmond;
 }
 
+.parchment {
+  position: absolute;
+  display: flex;
+    width: 75%;
+  min-height: calc((1vw + 1vh) * 75);
+  /* center page with absolute position */
+  top: 0%; left: 50%; transform: translate(-50%, 0);
+  margin: 2em 0;
+    padding: 4em;
+    box-shadow: 2px 3px 20px black, 0 0 60px #8a4d0f inset;
+    background: #fffef0;
+  filter: url(#wavy2);
+}
+
 .labelSize{
   font-size: 10px;
 }
@@ -49,4 +63,23 @@ body {
 .Card.Img {
   width: '50vw';
   height: '30vh';
+}
+
+.tokenDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tabColor {
+  color: black;
+  border: 1px solid #dee2e6;
+  border-top: transparent;
+  padding: 15px;
+}
+.characterSheet {
+  width: 20rem;
+  background-size: 20rem;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-image: url(/./images/scroll.png);
 }

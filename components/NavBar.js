@@ -2,6 +2,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { Nav, Button } from 'react-bootstrap';
+import UserProfile from './ProfileModal';
+// import SearchBar from './SearchBar';
 
 export default function NavBar() {
   return (
@@ -30,13 +32,20 @@ export default function NavBar() {
             </li>
             <li className="nav-item">
               <Link passHref href="/cast">
-                <Nav.Link>Cast</Nav.Link>
+                <Nav.Link>Creatures</Nav.Link>
               </Link>
             </li>
-            <Link passHref href="/profile">
-              <Nav.Link>PROFILE</Nav.Link>
-            </Link>
+            <li className="nav-item">
+              <Link passHref href="/npc">
+                <Nav.Link>Npc</Nav.Link>
+              </Link>
+            </li>
+            {/* <li className="nav-item">
+              <SearchBar />
+            </li> */}
+
           </ul>
+          <UserProfile />
         </div>
       </div>
     </Nav>

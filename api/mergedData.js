@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { clientCredentials } from '../utils/client';
 import {
-  getCampaignCast, getCampaignCharacters, getSingleCampaign,
+  getCampaignCast, getCampaignCharacters, getCampaignNpc, getCampaigns, getSingleCampaign,
 } from './campaignsData';
-import { getSingleCast } from './castData';
-import { getSingleCharacter } from './charactersData';
+import { getCast, getSingleCast } from './castData';
+import { getCharacters, getSingleCharacter } from './charactersData';
+import { getSingleNpc } from './npcData';
 
 const dbUrl = clientCredentials.databaseURL;
 
@@ -23,9 +24,17 @@ const removeCastfromCampaign = (uid, firebaseKey) => new Promise((resolve, rejec
 });
 
 const viewCampaignDetails = (campaignsFirebaseKey) => new Promise((resolve, reject) => {
-  Promise.all([getSingleCampaign(campaignsFirebaseKey), getCampaignCharacters(campaignsFirebaseKey), getCampaignCast(campaignsFirebaseKey)])
-    .then(([campaignsObject, campaignsCharactersArray, campaignsCastArray]) => {
-      resolve({ ...campaignsObject, characters: campaignsCharactersArray, casts: campaignsCastArray });
+  Promise.all([getSingleCampaign(campaignsFirebaseKey), getCampaignCharacters(campaignsFirebaseKey), getCampaignCast(campaignsFirebaseKey), getCampaignNpc(campaignsFirebaseKey)])
+    .then(([campaignsObject, campaignsCharactersArray, campaignsCastArray, campaignsNpcArray]) => {
+      resolve({
+        ...campaignsObject, characters: campaignsCharactersArray, casts: campaignsCastArray, npcs: campaignsNpcArray,
+      });
+    }).catch((error) => reject(error));
+});
+const viewSearchDetails = (campaignsFirebaseKey) => new Promise((resolve, reject) => {
+  Promise.all([getCast(campaignsFirebaseKey), getCampaigns(campaignsFirebaseKey), getCharacters(campaignsFirebaseKey)])
+    .then(([castName, campaignName, charactersName]) => {
+      resolve({ casts: castName, campaigns: campaignName, characters: charactersName });
     }).catch((error) => reject(error));
 });
 
@@ -33,6 +42,12 @@ const viewCastDetails = (castFirebaseKey) => new Promise((resolve, reject) => {
   Promise.all([getSingleCast(castFirebaseKey)])
     .then(([castObj]) => {
       resolve({ ...castObj });
+    }).catch((error) => reject(error));
+});
+const viewNpcDetails = (npcFirebaseKey) => new Promise((resolve, reject) => {
+  Promise.all([getSingleNpc(npcFirebaseKey)])
+    .then(([npcObj]) => {
+      resolve({ ...npcObj });
     }).catch((error) => reject(error));
 });
 
@@ -53,7 +68,8 @@ const getSingleCampaignCast = (campaignId) => new Promise((resolve, reject) => {
 
 export {
   viewCharacterDetails,
-  // deleteCampaignCast,
+  viewNpcDetails,
+  viewSearchDetails,
   viewCampaignDetails,
   viewCastDetails,
   removeCastfromCampaign,

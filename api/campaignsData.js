@@ -61,9 +61,15 @@ const getCampaignCast = (firebaseKey) => new Promise((resolve, reject) => {
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
+const getCampaignNpc = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/npc.json?orderBy="campaign_id"&equalTo="${firebaseKey}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
 
 export {
   getCampaigns,
+  getCampaignNpc,
   getSingleCampaign,
   deleteSingleCampaign,
   updateCampaigns,

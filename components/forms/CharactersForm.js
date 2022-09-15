@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { createCharacters, updateCharacters } from '../../api/charactersData';
 import { useAuth } from '../../utils/context/authContext';
 import { getCampaigns } from '../../api/campaignsData';
+import { getWeaponType } from '../../api/typeData';
 
 const initalState = {
   name: '',
@@ -60,6 +61,7 @@ const initalState = {
 
 export default function CharactersForm({ obj }) {
   const [formInput, setFormInput] = useState(initalState);
+  const [weapon, setWeapon] = useState([]);
   // const [characters, setCharacters] = useState([]);
   const [campaigns, setCampaigns] = useState([]);
   const router = useRouter();
@@ -67,10 +69,11 @@ export default function CharactersForm({ obj }) {
   // const [select1, setSelect1] = useState('test');
   // const [input1, setInput1] = useState('');
   // const [input2, setInput2] = useState('');
-
   useEffect(() => {
+    console.warn(weapon, 'x');
+    getWeaponType(user.uid).then(setWeapon);
+    if (obj.firebaseKey) setFormInput(obj);
     getCampaigns(user.uid).then(setCampaigns);
-
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
@@ -178,19 +181,19 @@ export default function CharactersForm({ obj }) {
 
         <Form.Group as={Col} controlId="formGridStamina">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Stamina" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Stamina" name="stamina" value={formInput.stamina} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Stamina" name="stamina" value={formInput.stamina} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridLuck">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Luck" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Luck" name="luck" value={formInput.luck} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Luck" name="luck" value={formInput.luck} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPluck">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Pluck" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Pluck" name="pluck" value={formInput.pluck} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Pluck" name="pluck" value={formInput.pluck} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
@@ -200,75 +203,75 @@ export default function CharactersForm({ obj }) {
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridAppraise">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Appraise" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Appraise" name="appraiseSkill" value={formInput.appraiseSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Appraise" name="appraiseSkill" value={formInput.appraiseSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridAthletics">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Athletics" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Athletics" name="athleticsSkill" value={formInput.athleticsSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Athletics" name="athleticsSkill" value={formInput.athleticsSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridBargain">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Bargin" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Baragin" name="bargainSkill" value={formInput.bargainSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Baragin" name="bargainSkill" value={formInput.bargainSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridBlunt">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Blunt" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Blunt" name="bluntSkill" value={formInput.bluntSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Blunt" name="bluntSkill" value={formInput.bluntSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridBow">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Bow" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Bow" name="bowSkill" value={formInput.bowSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Bow" name="bowSkill" value={formInput.bowSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridBrawling">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Brawling" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Brawling" name="brawlingSkill" value={formInput.brawlingSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Brawling" name="brawlingSkill" value={formInput.brawlingSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridCommand">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Command" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Command" name="commandSkill" value={formInput.commandSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Command" name="commandSkill" value={formInput.commandSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridCrossbow">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Crossbow" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Crossbow" name="crossbowSkill" value={formInput.crossbowSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Crossbow" name="crossbowSkill" value={formInput.crossbowSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridDiplomacy">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Diplomacy" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Diplomacy" name="diplomacySkill" value={formInput.diplomacySkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Diplomacy" name="diplomacySkill" value={formInput.diplomacySkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridDisguise">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Disguise" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Disguise" name="disguiseSkill" value={formInput.disguiseSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Disguise" name="disguiseSkill" value={formInput.disguiseSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridDodge">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Dodge" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Dodge" name="dodgeSkill" value={formInput.dodgeSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Dodge" name="dodgeSkill" value={formInput.dodgeSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridEndurance">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Endurance" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Endurance" name="enduranceSkill" value={formInput.enduranceSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Endurance" name="enduranceSkill" value={formInput.enduranceSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
@@ -276,25 +279,25 @@ export default function CharactersForm({ obj }) {
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridHistory">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="History" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="History" name="historySkill" value={formInput.historySkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="History" name="historySkill" value={formInput.historySkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridIncantation">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Incantation" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Incantation" name="incantationSkill" value={formInput.incantationSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Incantation" name="incantationSkill" value={formInput.incantationSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridIntimidate">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Intimidate" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Intimidate" name="intimidateSkill" value={formInput.intimidateSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Intimidate" name="intimidateSkill" value={formInput.intimidateSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridLanguage">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Language" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Language" name="languageSkill" value={formInput.languageSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Language" name="languageSkill" value={formInput.languageSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
@@ -302,25 +305,25 @@ export default function CharactersForm({ obj }) {
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridLargeBlade">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Large Blade" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Large Blade" name="largeBladeSkill" value={formInput.largeBladeSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Large Blade" name="largeBladeSkill" value={formInput.largeBladeSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridLie">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Lie" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Lie" name="lieSkill" value={formInput.lieSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Lie" name="lieSkill" value={formInput.lieSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridMedicine">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Medicine" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Medicine" name="medicineSkill" value={formInput.medicineSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Medicine" name="medicineSkill" value={formInput.medicineSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridNavigation">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Navigation" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Navigation" name="navigationSkill" value={formInput.navigationSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Navigation" name="navigationSkill" value={formInput.navigationSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
@@ -328,25 +331,25 @@ export default function CharactersForm({ obj }) {
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridOstler">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Ostler" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Ostler" name="ostlerSkill" value={formInput.ostlerSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Ostler" name="ostlerSkill" value={formInput.ostlerSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPersuaion">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Persuaion" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Persuaion" name="persuasionSkill" value={formInput.persuasionSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Persuaion" name="persuasionSkill" value={formInput.persuasionSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPloeArm">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Pole Arm" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Pole Arm" name="poleArmSkill" value={formInput.poleArmSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Pole Arm" name="poleArmSkill" value={formInput.poleArmSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridRepair">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Repair" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Repair" name="repairSkill" value={formInput.repairSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Repair" name="repairSkill" value={formInput.repairSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
@@ -354,25 +357,25 @@ export default function CharactersForm({ obj }) {
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridSleightOfHand">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Sleight of Hand" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Sleight of Hand" name="sleightOfHandSkill" value={formInput.sleightOfHandSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Sleight of Hand" name="sleightOfHandSkill" value={formInput.sleightOfHandSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridSmallBlade">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Small Blade" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Small Blade" name="smallBladeSkill" value={formInput.smallBladeSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Small Blade" name="smallBladeSkill" value={formInput.smallBladeSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridSpot">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Spot" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Spot" name="spotSkill" value={formInput.spotSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Spot" name="spotSkill" value={formInput.spotSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridStealth">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Stealth" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Stealth" name="stealthSkill" value={formInput.stealthSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Stealth" name="stealthSkill" value={formInput.stealthSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
@@ -380,25 +383,25 @@ export default function CharactersForm({ obj }) {
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridStreetwise">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Streetwise" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Streetwise" name="streetwiseSkill" value={formInput.streetwiseSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Streetwise" name="streetwiseSkill" value={formInput.streetwiseSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridSurvival">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Survival" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Survival" name="survivalSkill" value={formInput.survivalSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Survival" name="survivalSkill" value={formInput.survivalSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridSwimming">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Swimming" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Swimming" name="swimmingSkill" value={formInput.swimmingSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Swimming" name="swimmingSkill" value={formInput.swimmingSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridThrown">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Thrown" className="mb-1">
-            <Form.Control size="sm" type="number" placeholder="Thrown" name="thrownSkill" value={formInput.thrownSkill} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" placeholder="Thrown" name="thrownSkill" value={formInput.thrownSkill} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
@@ -412,9 +415,28 @@ export default function CharactersForm({ obj }) {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridWeapons">
-          <FloatingLabel size="sm" controlId="floatingTextarea" label="Weapons" className="mb-1">
+          <Form.Select
+            aria-label="Weapons"
+            size="sm"
+            name="weapons"
+            value={formInput.weapons}
+            onChange={handleChange}
+            className="mb-1"
+            required
+          >
+            <option value="">Select Weapons</option>
+            {weapon.map((weaponType) => (
+              <option
+                key={weaponType.firebaseKey}
+                value={weaponType.name}
+              >
+                {weaponType.name}
+              </option>
+            ))}
+          </Form.Select>
+          {/* <FloatingLabel size="sm" controlId="floatingTextarea" label="Weapons" className="mb-1">
             <Form.Control size="sm" type="text" placeholder="Weapons" name="weapons" value={formInput.weapons} onChange={handleChange} />
-          </FloatingLabel>
+          </FloatingLabel> */}
         </Form.Group>
       </Row>
 
@@ -438,9 +460,21 @@ export default function CharactersForm({ obj }) {
           </FloatingLabel>
         </Form.Group>
       </Row>
+      <Form.Check
+        type="switch"
+        id="public"
+        name="public"
+        label="Is This Character Public?"
+        checked={formInput.public}
+        onChange={(e) => setFormInput((prevState) => ({
+          ...prevState,
+          public: e.target.checked,
+        }))}
+      />
       <hr />
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
       <Button size="sm" variant="dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Character</Button>
+      <Button size="sm" variant="dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Random</Button>
     </Form>
   );
 }
