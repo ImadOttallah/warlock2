@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
-import { deleteNpc } from '../api/npcData';
+import { deleteNpc } from '../../api/npcData';
 
 function NpcCard({ npcObj, onUpdate }) {
   const deleteThisNpc = () => {

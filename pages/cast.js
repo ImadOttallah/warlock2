@@ -5,7 +5,7 @@ import {
   Button, Col, Container, Row,
 } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
-import CastCard from '../components/CastCard';
+import CastCard from '../components/mainCards/CastCard';
 import { getCast } from '../api/castData';
 import SearchCast from '../components/search/SearchCast';
 

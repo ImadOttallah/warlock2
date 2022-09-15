@@ -6,7 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import { createCast, updateCast } from '../../api/castData';
 import { useAuth } from '../../utils/context/authContext';
-import getCastType from '../../api/castTypeData';
+import getCastType from '../../api/typeData';
 import { getCampaigns } from '../../api/campaignsData';
 
 const initalState = {

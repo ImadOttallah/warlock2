@@ -5,9 +5,9 @@ import {
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../utils/context/authContext';
-import getCastType from '../../api/castTypeData';
 import { getCampaigns } from '../../api/campaignsData';
 import { createNpc, updateNpc } from '../../api/npcData';
+import { getNpcType } from '../../api/typeData';
 
 const initalState = {
   name: '',
@@ -33,7 +33,7 @@ function NpcForm({ obj }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    getCastType(user.uid).then(setNpc);
+    getNpcType(user.uid).then(setNpc);
     if (obj.firebaseKey) setFormInput(obj);
     getCampaigns(user.uid).then(setCampaigns);
     if (obj.firebaseKey) setFormInput(obj);
@@ -94,13 +94,13 @@ function NpcForm({ obj }) {
           {/* <Form.Control size="sm" type="text" placeholder="Type" name="type" value={formInput.type} onChange={handleChange} required /> */}
           <Form.Select aria-label="Type" size="sm" name="type" value={formInput.type} onChange={handleChange} className="mb-1" required>
             <option value="">Select a Type</option>
-            {npc.map((castType) => (
+            {npc.map((npcType) => (
               <option
-                key={castType.firebaseKey}
-                value={castType.name}
+                key={npcType.firebaseKey}
+                value={npcType.name}
                 // selected={obj.type === castType.name}
               >
-                {castType.name}
+                {npcType.name}
               </option>
             ))}
           </Form.Select>

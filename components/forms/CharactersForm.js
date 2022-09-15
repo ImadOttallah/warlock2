@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { createCharacters, updateCharacters } from '../../api/charactersData';
 import { useAuth } from '../../utils/context/authContext';
 import { getCampaigns } from '../../api/campaignsData';
+import { getWeaponType } from '../../api/typeData';
 
 const initalState = {
   name: '',
@@ -60,6 +61,7 @@ const initalState = {
 
 export default function CharactersForm({ obj }) {
   const [formInput, setFormInput] = useState(initalState);
+  const [weapon, setWeapon] = useState([]);
   // const [characters, setCharacters] = useState([]);
   const [campaigns, setCampaigns] = useState([]);
   const router = useRouter();
@@ -67,10 +69,11 @@ export default function CharactersForm({ obj }) {
   // const [select1, setSelect1] = useState('test');
   // const [input1, setInput1] = useState('');
   // const [input2, setInput2] = useState('');
-
   useEffect(() => {
+    console.warn(weapon, 'x');
+    getWeaponType(user.uid).then(setWeapon);
+    if (obj.firebaseKey) setFormInput(obj);
     getCampaigns(user.uid).then(setCampaigns);
-
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
@@ -412,9 +415,28 @@ export default function CharactersForm({ obj }) {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridWeapons">
-          <FloatingLabel size="sm" controlId="floatingTextarea" label="Weapons" className="mb-1">
+          <Form.Select
+            aria-label="Weapons"
+            size="sm"
+            name="weapons"
+            value={formInput.weapons}
+            onChange={handleChange}
+            className="mb-1"
+            required
+          >
+            <option value="">Select Weapons</option>
+            {weapon.map((weaponType) => (
+              <option
+                key={weaponType.firebaseKey}
+                value={weaponType.name}
+              >
+                {weaponType.name}
+              </option>
+            ))}
+          </Form.Select>
+          {/* <FloatingLabel size="sm" controlId="floatingTextarea" label="Weapons" className="mb-1">
             <Form.Control size="sm" type="text" placeholder="Weapons" name="weapons" value={formInput.weapons} onChange={handleChange} />
-          </FloatingLabel>
+          </FloatingLabel> */}
         </Form.Group>
       </Row>
 

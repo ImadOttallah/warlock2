@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
-import { deleteCast } from '../api/castData';
+import { deleteCast } from '../../api/castData';
 
 function CastCard({ castObj, onUpdate }) {
   const deleteThisCast = () => {

@@ -6,7 +6,7 @@ import {
 } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { getNpc } from '../api/npcData';
-import NpcCard from '../components/NpcCard';
+import NpcCard from '../components/mainCards/NpcCard';
 import SearchNpc from '../components/search/SearchNpc';
 
 function Npc() {

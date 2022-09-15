@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { getCampaigns } from '../api/campaignsData';
-import CampaignsCard from '../components/CampaignCard';
+import CampaignsCard from '../components/mainCards/CampaignCard';
 import SearchCampaigns from '../components/search/SearchCampaigns';
 
 function Campaigns() {

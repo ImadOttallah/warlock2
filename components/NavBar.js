@@ -32,7 +32,7 @@ export default function NavBar() {
             </li>
             <li className="nav-item">
               <Link passHref href="/cast">
-                <Nav.Link>Cast</Nav.Link>
+                <Nav.Link>Creatures</Nav.Link>
               </Link>
             </li>
             <li className="nav-item">

@@ -1,0 +1,107 @@
+{
+  "-NBx0M2p4XaV-Qfp1hKa" : {
+    "firebaseKey" : "-NBx0M2p4XaV-Qfp1hKa",
+    "user" : "",
+    "name" : "Unarmed",
+    "type" : "Casual",
+    "damage" : "1d6 -2 crushing"
+},
+"-NBx0P6quiV0Nb3_L5-b" : {
+  "firebaseKey" : "-NBx0P6quiV0Nb3_L5-b",
+  "user" : "",
+  "name" : "Club",
+  "type" : "Casual",
+  "damage" : "1d6 -1 crushing"
+},
+"-NBx0Sb-pR07UddEBpPA" : {
+  "firebaseKey" : "-NBx0Sb-pR07UddEBpPA",
+  "user" : "",
+  "name" : "Knife",
+  "type" : "Casual",
+  "damage" : "1d6 +1 slashing"
+},
+"-NBx0V-Yo-rK8CUsRfH5" : {
+  "firebaseKey" : "-NBx0V-Yo-rK8CUsRfH5",
+  "user" : "",
+  "name" : "Dagger",
+  "type" : "Casual",
+  "damage" : "1d6 +2 piercing"
+},
+"-NBx0XqqU8WETrYSg_xJ" : {
+  "firebaseKey" : "-NBx0XqqU8WETrYSg_xJ",
+  "user" : "",
+  "name" : "Short Sword",
+  "type" : "Casual",
+  "damage" : "1d6 +3 slashing"
+},
+"-NBx0_K90lMTegLt4Rk1" : {
+  "firebaseKey" : "-NBx0_K90lMTegLt4Rk1",
+  "user" : "",
+  "name" : "Arming Sword",
+  "type" : "Casual",
+  "damage" : "2d6 slashing"
+},
+"-NBx0cZV6BBjPLcbF8vn" : {
+  "firebaseKey" : "-NBx0cZV6BBjPLcbF8vn",
+  "user" : "",
+  "name" : "Hammer",
+  "type" : "Martial",
+  "damage" : "2d6 crushing"
+},
+"-NBx0fNodiUfMkKm_rLL" : {
+  "firebaseKey" : "-NBx0fNodiUfMkKm_rLL",
+  "user" : "",
+  "name" : "Axe",
+  "type" : "Martial",
+  "damage" : "2d6 +1 crushing"
+},
+"-NBx0hX_u0cccAQvwSsi" : {
+  "firebaseKey" : "-NBx0hX_u0cccAQvwSsi",
+  "user" : "",
+  "name" : "Mace",
+  "type" : "Martial",
+  "damage" : "2d6 +2 crushing"
+},
+"-NBx0k0pMMhIl2fzQQdo" : {
+  "firebaseKey" : "-NBx0k0pMMhIl2fzQQdo",
+  "user" : "",
+  "name" : "Spear",
+  "type" : "Martial",
+  "damage" : "2d6 +1 piercing"
+},
+"NBx0mx2dpc5iCBELMqe" : {
+  "firebaseKey" : "NBx0mx2dpc5iCBELMqe",
+  "user" : "",
+  "name" : "Pole-arm",
+  "type" : "Martial",
+  "damage" : "2d6 +2 slashing"
+},
+"-NBx0pcP_7eBQewOhi2s" : {
+  "firebaseKey" : "-NBx0pcP_7eBQewOhi2s",
+  "user" : "",
+  "name" : "2H sword",
+  "type" : "Martial",
+  "damage" : "2d6 +3 slashing"
+},
+"-NBx0sUkdmYo2aNLDnHW" : {
+  "firebaseKey" : "-NBx0sUkdmYo2aNLDnHW",
+  "user" : "",
+  "name" : "Staff",
+  "type" : "Casual",
+  "damage" : "1d6 crushing"
+},
+"-NBx0v92fitOtiSZxStu" : {
+  "firebaseKey" : "-NBx0v92fitOtiSZxStu",
+  "user" : "",
+  "name" : "Bow",
+  "type" : "Casual",
+  "damage" : "2d6 +1 piercing"
+},
+"-NBx0xLArG_epR45tlhT" : {
+  "firebaseKey" : "-NBx0xLArG_epR45tlhT",
+  "user" : "",
+  "name" : "Crossbow",
+  "type" : "Martial",
+  "damage" : "2d6 +2 piercing"
+}
+}

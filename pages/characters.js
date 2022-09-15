@@ -5,7 +5,7 @@ import {
   Button, Col, Container, Row,
 } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
-import CharactersCard from '../components/CharactersCard';
+import CharactersCard from '../components/mainCards/CharactersCard';
 import { getCharacters } from '../api/charactersData';
 import SearchCharacters from '../components/search/SearchCharacters';
 
