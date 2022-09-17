@@ -415,7 +415,7 @@ export default function CharactersForm({ obj }) {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridWeapons">
-          <Form.Select
+          {/* <Form.Select
             aria-label="Weapons"
             size="sm"
             name="weapons"
@@ -433,7 +433,7 @@ export default function CharactersForm({ obj }) {
                 {weaponType.name}
               </option>
             ))}
-          </Form.Select>
+          </Form.Select> */}
           {/* <FloatingLabel size="sm" controlId="floatingTextarea" label="Weapons" className="mb-1">
             <Form.Control size="sm" type="text" placeholder="Weapons" name="weapons" value={formInput.weapons} onChange={handleChange} />
           </FloatingLabel> */}
