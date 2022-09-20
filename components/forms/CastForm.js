@@ -6,8 +6,8 @@ import {
 import PropTypes from 'prop-types';
 import { createCast, updateCast } from '../../api/castData';
 import { useAuth } from '../../utils/context/authContext';
-import getCastType from '../../api/typeData';
 import { getCampaigns } from '../../api/campaignsData';
+import { getCreatureType } from '../../api/typeData';
 
 const initalState = {
   name: '',
@@ -31,9 +31,8 @@ function CastForm({ obj }) {
   const [campaigns, setCampaigns] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
-
   useEffect(() => {
-    getCastType(user.uid).then(setCast);
+    getCreatureType(user.uid).then(setCast);
     if (obj.firebaseKey) setFormInput(obj);
     getCampaigns(user.uid).then(setCampaigns);
     if (obj.firebaseKey) setFormInput(obj);
@@ -59,7 +58,7 @@ function CastForm({ obj }) {
   };
   return (
     <Form className="form-floating" onSubmit={handleSubmit}>
-      <h2 className="text-black mt-2">{obj.firebaseKey ? 'Update' : 'Create'} Cast</h2>
+      <h2 className="text-black mt-2">{obj.firebaseKey ? 'Update' : 'Create'} Creature</h2>
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridName">
           <FloatingLabel controlId="floatingTextarea" label="Name" className="mb-1">
@@ -141,6 +140,14 @@ function CastForm({ obj }) {
 
       <hr />
       <Row className="mb-2">
+        <Form.Group as={Col} controlId="formGridDescription">
+          <FloatingLabel size="sm" controlId="floatingTextarea" label="Description" className="mb-1">
+            <Form.Control size="sm" type="text" placeholder="Description" name="description" value={formInput.description} onChange={handleChange} required />
+          </FloatingLabel>
+        </Form.Group>
+      </Row>
+      <hr />
+      <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridNotes">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Notes" className="mb-1">
             <Form.Control size="sm" type="text" placeholder="Notes" name="notes" value={formInput.notes} onChange={handleChange} />
@@ -161,7 +168,7 @@ function CastForm({ obj }) {
       <hr />
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
       <Button size="sm" variant="dark" type="submit">
-        {obj.firebaseKey ? 'Update' : 'Create'} Cast
+        {obj.firebaseKey ? 'Update' : 'Create'} Creature
       </Button>
     </Form>
   );

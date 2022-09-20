@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Card, Button } from 'react-bootstrap';
+import {
+  Card, Button, Row, Container, Col,
+} from 'react-bootstrap';
 import { updateNpc } from '../../api/npcData';
 
 function NpcToken({ npcObj, onUpdate }) {
@@ -12,22 +14,34 @@ function NpcToken({ npcObj, onUpdate }) {
   };
 
   return (
-    <Card border="dark" style={{ width: '16rem' }}>
+    <Card border="dark" style={{ width: '18rem' }}>
       <Card.Body>
-        <Card.Title>{npcObj.name}</Card.Title>
-        <li className="list-group-item">Type: {npcObj.type}</li>
-        <li className="list-group-item">Stamina: {npcObj.stamina}</li>
-        {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
-        <Link href={`/npc/${npcObj.firebaseKey}`} passHref>
-          <Button size="sm" variant="dark" className="m-2">VIEW</Button>
-        </Link>
-        {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
-        <Link href={`/npc/edit/${npcObj.firebaseKey}`} passHref>
-          <Button size="sm" variant="dark">EDIT</Button>
-        </Link>
-        <Button size="sm" variant="danger" onClick={removeThisNpc} className="m-2">
-          REMOVE
-        </Button>
+        <Container>
+          <Row>
+            <Col>
+              <Card.Title>{npcObj.name}</Card.Title>
+              <li className="list-group-item">Type: {npcObj.type}</li>
+              <li className="list-group-item">Stamina: {npcObj.stamina}</li>
+            </Col>
+            <Col>
+              <Card.Img className="tokenImage" variant="top" src={npcObj.image} alt={npcObj.name} />
+            </Col>
+          </Row>
+
+          <Link href={`/npc/${npcObj.firebaseKey}`} passHref>
+            <Button size="sm" variant="dark" className="m-2">
+              VIEW
+            </Button>
+          </Link>
+          <Link href={`/npc/edit/${npcObj.firebaseKey}`} passHref>
+            <Button size="sm" variant="dark">
+              EDIT
+            </Button>
+          </Link>
+          <Button size="sm" variant="danger" onClick={removeThisNpc} className="m-2">
+            REMOVE
+          </Button>
+        </Container>
       </Card.Body>
     </Card>
   );

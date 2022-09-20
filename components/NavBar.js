@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
@@ -10,9 +11,7 @@ export default function NavBar() {
     <Nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="container-fluid">
         <Link passHref href="/">
-          <a className="navbar-brand" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
-            Warlock Grimroire
-          </a>
+          <img className="logo" src="/images/warlock2.png" alt="warlock" />
         </Link>
         <Button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
@@ -40,10 +39,6 @@ export default function NavBar() {
                 <Nav.Link>Npc</Nav.Link>
               </Link>
             </li>
-            {/* <li className="nav-item">
-              <SearchBar />
-            </li> */}
-
           </ul>
           <UserProfile />
         </div>

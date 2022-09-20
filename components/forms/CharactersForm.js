@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { createCharacters, updateCharacters } from '../../api/charactersData';
 import { useAuth } from '../../utils/context/authContext';
 import { getCampaigns } from '../../api/campaignsData';
-import { getWeaponType } from '../../api/typeData';
+// import { getWeaponType } from '../../api/typeData';
 
 const initalState = {
   name: '',
@@ -19,38 +19,38 @@ const initalState = {
   stamina: '',
   luck: '',
   pluck: '',
-  appraiseSkill: '',
-  athleticsSkill: '',
-  bargainSkill: '',
-  bluntSkill: '',
-  bowSkill: '',
-  brawlingSkill: '',
-  commandSkill: '',
-  crossbowSkill: '',
-  diplomacySkill: '',
-  disguiseSkill: '',
-  dodgeSkill: '',
-  enduranceSkill: '',
-  historySkill: '',
-  incantationSkill: '',
-  intimidateSkill: '',
-  languageSkill: '',
-  largeBladeSkill: '',
-  lieSkill: '',
-  medicineSkill: '',
-  navigationSkill: '',
-  ostlerSkill: '',
-  persuasionSkill: '',
-  poleArmSkill: '',
-  repairSkill: '',
-  sleightOfHandSkill: '',
-  smallBladeSkill: '',
-  spotSkill: '',
-  stealthSkill: '',
-  streetwiseSkill: '',
-  survivalSkill: '',
-  swimmingSkill: '',
-  thrownSkill: '',
+  appraiseSkill: '4',
+  athleticsSkill: '4',
+  bargainSkill: '4',
+  bluntSkill: '4',
+  bowSkill: '4',
+  brawlingSkill: '4',
+  commandSkill: '4',
+  crossbowSkill: '4',
+  diplomacySkill: '4',
+  disguiseSkill: '4',
+  dodgeSkill: '4',
+  enduranceSkill: '4',
+  historySkill: '4',
+  incantationSkill: '4',
+  intimidateSkill: '4',
+  languageSkill: '4',
+  largeBladeSkill: '4',
+  lieSkill: '4',
+  medicineSkill: '4',
+  navigationSkill: '4',
+  ostlerSkill: '4',
+  persuasionSkill: '4',
+  poleArmSkill: '4',
+  repairSkill: '4',
+  sleightOfHandSkill: '4',
+  smallBladeSkill: '4',
+  spotSkill: '4',
+  stealthSkill: '4',
+  streetwiseSkill: '4',
+  survivalSkill: '4',
+  swimmingSkill: '4',
+  thrownSkill: '4',
   possesions: '',
   weapons: '',
   traits: '',
@@ -61,32 +61,17 @@ const initalState = {
 
 export default function CharactersForm({ obj }) {
   const [formInput, setFormInput] = useState(initalState);
-  const [weapon, setWeapon] = useState([]);
-  // const [characters, setCharacters] = useState([]);
+  // const [weapon, setWeapon] = useState([]);
   const [campaigns, setCampaigns] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
-  // const [select1, setSelect1] = useState('test');
-  // const [input1, setInput1] = useState('');
-  // const [input2, setInput2] = useState('');
   useEffect(() => {
-    console.warn(weapon, 'x');
-    getWeaponType(user.uid).then(setWeapon);
-    if (obj.firebaseKey) setFormInput(obj);
+    // getWeaponType(user.uid).then(setWeapon);
+    // if (obj.firebaseKey) setFormInput(obj);
     getCampaigns(user.uid).then(setCampaigns);
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
-
-  // function select1Function(e) {
-  //   setInput1(e.target.value);
-  //   if (select1 === 'test') {
-  //     setInput2(e.target.value);
-  //     document.getElementById('input2').disabled = true;
-  //   } else {
-  //     document.getElementById('input2').disabled = false;
-  //   }
-  // }
-
+  // const y = (20 - formInput.luck);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({
@@ -109,15 +94,6 @@ export default function CharactersForm({ obj }) {
   return (
     <Form className="form-floating" onSubmit={handleSubmit}>
       <h2 className="text-black mt-2">{obj.firebaseKey ? 'Update' : 'Create'} Character</h2>
-
-      {/* <select value={select1} onChange={(e) => setSelect1(e.target.value)}>
-        <option value="test">Test</option>
-
-      </select>
-
-      <input type="text" value={input1} onChange={select1Function} />
-      <input type="text" value={input2} onChange={(e) => setInput2(e.target.value)} id="input2" /> */}
-
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridName">
           <FloatingLabel controlId="floatingTextarea" label="Name" className="mb-1">
@@ -133,24 +109,11 @@ export default function CharactersForm({ obj }) {
       </Row>
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridType">
-
-          {/* <Form.Control size="sm" type="text" placeholder="Type" name="type" value={formInput.type} onChange={handleChange} required /> */}
-          <Form.Select
-            aria-label="Campaign"
-            size="sm"
-            name="campaign_id"
-            value={formInput.campaign_id}
-            onChange={handleChange}
-            className="mb-1"
-            required
-          >
+          <Form.Select aria-label="Campaign" size="sm" name="campaign_id" value={formInput.campaign_id} onChange={handleChange} className="mb-1" required>
             <option value="">Select a Campaign</option>
             <option>none</option>
             {campaigns.map((campaign) => (
-              <option
-                key={campaign.firebaseKey}
-                value={campaign.firebaseKey}
-              >
+              <option key={campaign.firebaseKey} value={campaign.firebaseKey}>
                 {campaign.name}
               </option>
             ))}
@@ -193,7 +156,7 @@ export default function CharactersForm({ obj }) {
 
         <Form.Group as={Col} controlId="formGridPluck">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Pluck" className="mb-1">
-            <Form.Control size="sm" type="number" min="0" placeholder="Pluck" name="pluck" value={formInput.pluck} onChange={handleChange} required />
+            <Form.Control size="sm" type="number" min="0" max="20" placeholder="Pluck" name="pluck" value={formInput.pluck} onChange={handleChange} required />
           </FloatingLabel>
         </Form.Group>
       </Row>
@@ -415,28 +378,9 @@ export default function CharactersForm({ obj }) {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridWeapons">
-          <Form.Select
-            aria-label="Weapons"
-            size="sm"
-            name="weapons"
-            value={formInput.weapons}
-            onChange={handleChange}
-            className="mb-1"
-            required
-          >
-            <option value="">Select Weapons</option>
-            {weapon.map((weaponType) => (
-              <option
-                key={weaponType.firebaseKey}
-                value={weaponType.name}
-              >
-                {weaponType.name}
-              </option>
-            ))}
-          </Form.Select>
-          {/* <FloatingLabel size="sm" controlId="floatingTextarea" label="Weapons" className="mb-1">
+          <FloatingLabel size="sm" controlId="floatingTextarea" label="Weapons" className="mb-1">
             <Form.Control size="sm" type="text" placeholder="Weapons" name="weapons" value={formInput.weapons} onChange={handleChange} />
-          </FloatingLabel> */}
+          </FloatingLabel>
         </Form.Group>
       </Row>
 
@@ -473,8 +417,9 @@ export default function CharactersForm({ obj }) {
       />
       <hr />
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
-      <Button size="sm" variant="dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Character</Button>
-      <Button size="sm" variant="dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Random</Button>
+      <Button size="sm" variant="dark" type="submit">
+        {obj.firebaseKey ? 'Update' : 'Create'} Character
+      </Button>
     </Form>
   );
 }

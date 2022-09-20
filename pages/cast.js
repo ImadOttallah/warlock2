@@ -10,22 +10,15 @@ import { getCast } from '../api/castData';
 import SearchCast from '../components/search/SearchCast';
 
 function Cast() {
-  // TODO: Set a state for books
   const [cast, setCast] = useState([]);
   const [filteredCast, setFilteredCast] = useState([]);
-
-  // TODO: Get user ID using useAuth Hook
   const { user } = useAuth();
-
-  // TODO: create a function that makes the API call to get all the books
   const getAllTheCast = () => {
     getCast(user.uid).then((castsArray) => {
       setCast(castsArray);
       setFilteredCast(castsArray);
     });
   };
-
-  // TODO: make the call to the API to get all the books on component render
   useEffect(() => {
     getAllTheCast();
   }, []);
@@ -36,14 +29,18 @@ function Cast() {
         <Row>
           <Col>
             <Link href="/cast/new" passHref>
-              <Button size="sm" variant="dark">Create Cast</Button>
+              <Button size="sm" variant="dark">
+                Create Cast
+              </Button>
             </Link>
           </Col>
-          <Col> <SearchCast cast={cast} setFilteredCast={setFilteredCast} /></Col>
+          <Col>
+            {' '}
+            <SearchCast cast={cast} setFilteredCast={setFilteredCast} />
+          </Col>
         </Row>
       </Container>
       <div className="d-flex flex-wrap">
-        {/* TODO: map over books here using BookCard component */}
         {filteredCast.map((casts) => (
           <CastCard key={casts.firebaseKey} castObj={casts} onUpdate={getAllTheCast} />
         ))}

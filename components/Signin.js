@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import { Button, Image } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { signIn } from '../utils/auth';
 
 function Signin() {
@@ -12,15 +13,12 @@ function Signin() {
         height: '100vh',
       }}
     >
-      <div>
-        <Image src="/./images/warlock.png" alt="" height={600} width={500} />
-        <div>
-          <Button type="button" className="btn btn-dark btn-sm copy-btn" onClick={signIn}>
-            Sign In
-          </Button>
-        </div>
-      </div>
-
+      <h1>
+        <img className="signinLogo" src="/./images/warlock3.png" alt="" />
+      </h1>
+      <Button type="button" className="btn btn-dark btn-sm copy-btn" onClick={signIn}>
+        Sign In
+      </Button>
     </div>
   );
 }

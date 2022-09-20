@@ -19,7 +19,7 @@ export default function ViewCampaigns() {
   };
   useEffect(() => {
     removeFunction();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
@@ -27,7 +27,9 @@ export default function ViewCampaigns() {
         <Container>
           <Row xs={2}>
             <Col xs> Name: {campaignDetails.name}</Col>
-            <Col xs><Card.Img variant="top" src={campaignDetails.image} alt={campaignDetails.name} style={{ height: '200px' }} /></Col>
+            <Col xs>
+              <Card.Img variant="top" src={campaignDetails.image} alt={campaignDetails.name} style={{ height: '200px' }} />
+            </Col>
           </Row>
           <hr />
           <Row xs={1}>
@@ -35,28 +37,29 @@ export default function ViewCampaigns() {
           </Row>
           <hr />
           <Row xs={1}>
-            <Tabs
-              defaultActiveKey="profile"
-              id="fill-tab-example"
-              className="mb-3"
-              fill
-            >
+            <Tabs defaultActiveKey="profile" id="fill-tab-example" className="mb-3" fill>
               <Tab eventKey="characters" title="Characters">
-                <Col className="tokenDisplay" xs>{campaignDetails.characters?.map((character) => (
-                  <CharactersToken key={character.firebaseKey} charactersObj={character} onUpdate={removeFunction} />))}
+                <Col className="tokenDisplay" xs>
+                  {campaignDetails.characters?.map((character) => (
+                    <CharactersToken key={character.firebaseKey} charactersObj={character} onUpdate={removeFunction} />
+                  ))}
                 </Col>
               </Tab>
               <Tab eventKey="cast" title="Cast">
                 <div className="tokenDisplay">
-                  <Col className="tokenDisplay" xs>{campaignDetails.casts?.map((casts) => (
-                    <CastToken key={casts.firebaseKey} castObj={casts} onUpdate={removeFunction} />))}
+                  <Col className="tokenDisplay" xs>
+                    {campaignDetails.casts?.map((casts) => (
+                      <CastToken key={casts.firebaseKey} castObj={casts} onUpdate={removeFunction} />
+                    ))}
                   </Col>
                 </div>
               </Tab>
               <Tab eventKey="npc" title="Npc">
                 <div className="tokenDisplay">
-                  <Col className="tokenDisplay" xs>{campaignDetails.npcs?.map((npc) => (
-                    <NpcToken key={npc.firebaseKey} npcObj={npc} onUpdate={removeFunction} />))}
+                  <Col className="tokenDisplay" xs>
+                    {campaignDetails.npcs?.map((npc) => (
+                      <NpcToken key={npc.firebaseKey} npcObj={npc} onUpdate={removeFunction} />
+                    ))}
                   </Col>
                 </div>
               </Tab>
@@ -69,7 +72,6 @@ export default function ViewCampaigns() {
           </Row>
           <hr />
         </Container>
-
       </Card>
     </>
   );

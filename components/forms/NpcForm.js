@@ -76,7 +76,6 @@ function NpcForm({ obj }) {
 
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridType">
-          {/* <Form.Control size="sm" type="text" placeholder="Type" name="type" value={formInput.type} onChange={handleChange} required /> */}
           <Form.Select aria-label="Campaign" size="sm" name="campaign_id" value={formInput.campaign_id} onChange={handleChange} className="mb-1" required>
             <option value="">Select a Campaign</option>
             <option>none</option>
@@ -91,15 +90,10 @@ function NpcForm({ obj }) {
 
       <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridType">
-          {/* <Form.Control size="sm" type="text" placeholder="Type" name="type" value={formInput.type} onChange={handleChange} required /> */}
           <Form.Select aria-label="Type" size="sm" name="type" value={formInput.type} onChange={handleChange} className="mb-1" required>
             <option value="">Select a Type</option>
             {npc.map((npcType) => (
-              <option
-                key={npcType.firebaseKey}
-                value={npcType.name}
-                // selected={obj.type === castType.name}
-              >
+              <option key={npcType.firebaseKey} value={npcType.name}>
                 {npcType.name}
               </option>
             ))}
@@ -138,6 +132,14 @@ function NpcForm({ obj }) {
           </FloatingLabel>
         </Form.Group>
       </Row>
+      <hr />
+      <Row className="mb-2">
+        <Form.Group as={Col} controlId="formGridDescription">
+          <FloatingLabel size="sm" controlId="floatingTextarea" label="Description" className="mb-1">
+            <Form.Control size="sm" type="text" placeholder="Description" name="description" value={formInput.description} onChange={handleChange} required />
+          </FloatingLabel>
+        </Form.Group>
+      </Row>
 
       <hr />
       <Row className="mb-2">
@@ -159,7 +161,7 @@ function NpcForm({ obj }) {
         }))}
       />
       <hr />
-      {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
+
       <Button size="sm" variant="dark" type="submit">
         {obj.firebaseKey ? 'Update' : 'Create'} Npc
       </Button>

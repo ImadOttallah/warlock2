@@ -10,22 +10,15 @@ import NpcCard from '../components/mainCards/NpcCard';
 import SearchNpc from '../components/search/SearchNpc';
 
 function Npc() {
-  // TODO: Set a state for books
   const [npc, setNpc] = useState([]);
   const [filteredNpc, setFilteredNpc] = useState([]);
-
-  // TODO: Get user ID using useAuth Hook
   const { user } = useAuth();
-
-  // TODO: create a function that makes the API call to get all the books
   const getAllTheNpc = () => {
     getNpc(user.uid).then((npcArray) => {
       setNpc(npcArray);
       setFilteredNpc(npcArray);
     });
   };
-
-  // TODO: make the call to the API to get all the books on component render
   useEffect(() => {
     getAllTheNpc();
   }, []);
@@ -43,7 +36,6 @@ function Npc() {
         </Row>
       </Container>
       <div className="d-flex flex-wrap">
-        {/* TODO: map over books here using BookCard component */}
         {filteredNpc.map((npcs) => (
           <NpcCard key={npcs.firebaseKey} npcObj={npcs} onUpdate={getAllTheNpc} />
         ))}

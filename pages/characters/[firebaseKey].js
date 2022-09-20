@@ -15,11 +15,11 @@ export default function ViewCharacters() {
 
   return (
     <>
-      <Card style={{ margin: '10px' }}>
+      <Card style={{ width: '50rem', margin: '10px' }}>
         <Container>
           <Row xs={2}>
             <Col xs>
-              <ul className="list-unstyled">
+              <ul className="statBlock">
                 <li>Name: {characterDetails.name}</li>
                 <li>Community: {characterDetails.community}</li>
                 <li>Career: {characterDetails.career}</li>
@@ -30,15 +30,12 @@ export default function ViewCharacters() {
               </ul>
             </Col>
 
-            <Col xs><Card.Img variant="top" src={characterDetails.image} alt={characterDetails.name} style={{ height: '200px' }} /></Col>
+            <Col xs>
+              <Card.Img variant="top" src={characterDetails.image} alt={characterDetails.name} style={{ height: '200px' }} />
+            </Col>
           </Row>
           <Row xs={1}>
-            <Tabs
-              defaultActiveKey="profile"
-              id="fill-tab-example"
-              className="mb-3"
-              fill
-            >
+            <Tabs defaultActiveKey="profile" id="fill-tab-example" className="mb-3" fill>
               <Tab eventKey="skills" title="Skills">
                 <Row xs={4}>
                   <Col xs>Appraise: {characterDetails.appraiseSkill}</Col>
@@ -102,7 +99,6 @@ export default function ViewCharacters() {
             </Tabs>
           </Row>
         </Container>
-
       </Card>
     </>
   );

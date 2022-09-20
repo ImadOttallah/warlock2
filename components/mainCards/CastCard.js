@@ -20,13 +20,15 @@ function CastCard({ castObj, onUpdate }) {
           <li className="list-group-item">Type: {castObj.type}</li>
           <li className="list-group-item">Stamina: {castObj.stamina}</li>
         </ul>
-        {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
         <Link href={`/cast/${castObj.firebaseKey}`} passHref>
-          <Button size="sm" variant="dark" className="m-2">VIEW</Button>
+          <Button size="sm" variant="dark" className="m-2">
+            VIEW
+          </Button>
         </Link>
-        {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
         <Link href={`/cast/edit/${castObj.firebaseKey}`} passHref>
-          <Button size="sm" variant="dark">EDIT</Button>
+          <Button size="sm" variant="dark">
+            EDIT
+          </Button>
         </Link>
         <Button size="sm" variant="danger" onClick={deleteThisCast} className="m-2">
           DELETE

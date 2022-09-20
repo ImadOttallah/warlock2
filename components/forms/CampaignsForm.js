@@ -25,7 +25,7 @@ function CampaignsForm({ obj }) {
     getCampaigns(user.uid).then(setCampaign);
     console.warn(campaign);
     if (obj.firebaseKey) setFormInput(obj);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [obj, user]);
 
   const handleChange = (e) => {
@@ -97,8 +97,9 @@ function CampaignsForm({ obj }) {
         }))}
       />
       <hr />
-      {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
-      <Button size="sm" variant="dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Campaign</Button>
+      <Button size="sm" variant="dark" type="submit">
+        {obj.firebaseKey ? 'Update' : 'Create'} Campaign
+      </Button>
     </Form>
   );
 }
