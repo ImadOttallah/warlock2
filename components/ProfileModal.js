@@ -22,18 +22,18 @@ function UserProfile() {
           <Modal.Title>Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>{user.displayName}</p>
-          <p>{user.email}</p>
-          <img src={user.photoURL} alt={user} />
+          <div className="profileBlock">
+            <p>Name: {user.displayName}</p>
+            <p>Email: {user.email}</p>
+            <img src={user.photoURL} alt={user} />
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button
-            onClick={signOut}
-            variant="primary"
-          >Sign Out
+          <Button onClick={signOut} variant="primary">
+            Sign Out
           </Button>
         </Modal.Footer>
       </Modal>

@@ -15,7 +15,6 @@ function Campaigns() {
   const [filteredCampaign, setFilteredCampaign] = useState([]);
   const { user } = useAuth();
 
-  // TODO: create a function that makes the API call to get all the Campaigns
   const getAllTheCampaigns = () => {
     getCampaigns(user.uid).then((campaignsArray) => {
       setCampaign(campaignsArray);
@@ -23,7 +22,6 @@ function Campaigns() {
     });
   };
 
-  // TODO: make the call to the API to get all the Campaigns on component render
   useEffect(() => {
     getAllTheCampaigns();
   }, []);
@@ -34,15 +32,17 @@ function Campaigns() {
         <Row>
           <Col>
             <Link href="/campaigns/new" passHref>
-              <Button size="sm" variant="dark">Create a Campaign</Button>
+              <Button size="sm" variant="dark">
+                Create a Campaign
+              </Button>
             </Link>
           </Col>
-          <Col> <SearchCampaigns campaign={campaign} setFilteredCampaign={setFilteredCampaign} /></Col>
+          <Col>
+            {' '}
+            <SearchCampaigns campaign={campaign} setFilteredCampaign={setFilteredCampaign} />
+          </Col>
         </Row>
       </Container>
-      {/* <Link href="/campaigns/new" passHref>
-        <Button size="sm" variant="dark">Create a Campaign</Button>
-      </Link> */}
       <div className="d-flex flex-wrap">
         {filteredCampaign.map((campaigns) => (
           <CampaignsCard key={campaigns.firebaseKey} campaignsObj={campaigns} onUpdate={getAllTheCampaigns} />

@@ -10,22 +10,15 @@ import { getCharacters } from '../api/charactersData';
 import SearchCharacters from '../components/search/SearchCharacters';
 
 function Characters() {
-  // TODO: Set a state for books
   const [characters, setCharacters] = useState([]);
   const [filteredCharacters, setFilteredCharacters] = useState([]);
-
-  // TODO: Get user ID using useAuth Hook
   const { user } = useAuth();
-
-  // TODO: create a function that makes the API call to get all the books
   const getAllTheCharacters = () => {
     getCharacters(user.uid).then((charactersArray) => {
       setCharacters(charactersArray);
       setFilteredCharacters(charactersArray);
     });
   };
-
-  // TODO: make the call to the API to get all the books on component render
   useEffect(() => {
     getAllTheCharacters();
   }, []);
@@ -38,15 +31,18 @@ function Characters() {
           <Row>
             <Col>
               <Link href="/characters/new" passHref>
-                <Button size="sm" variant="dark">Create a Character</Button>
+                <Button size="sm" variant="dark">
+                  Create a Character
+                </Button>
               </Link>
             </Col>
-            <Col><SearchCharacters characters={characters} setFilteredCharacters={setFilteredCharacters} /></Col>
+            <Col>
+              <SearchCharacters characters={characters} setFilteredCharacters={setFilteredCharacters} />
+            </Col>
           </Row>
         </Container>
       </div>
       <div className="d-flex flex-wrap">
-        {/* TODO: map over books here using BookCard component */}
         {filteredCharacters.map((character) => (
           <CharactersCard key={character.firebaseKey} charactersObj={character} onUpdate={getAllTheCharacters} />
         ))}

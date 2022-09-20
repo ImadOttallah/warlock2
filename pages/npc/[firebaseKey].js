@@ -14,18 +14,22 @@ export default function ViewNpc() {
   }, [firebaseKey]);
   return (
     <>
-      <Card style={{ margin: '10px' }}>
+      <Card style={{ width: '40rem', margin: '10px' }}>
         <Container>
           <Row xs={2}>
-            <Col xs>{npcDetails.name}</Col>
-            <Col xs>Image:  <Card.Img variant="top" src={npcDetails.image} alt={npcDetails.name} style={{ height: '400px' }} /></Col>
+            <Col xs>
+              <ul className="statBlock">
+                <li>{npcDetails.name}</li>
+                <li>Type: {npcDetails.type}</li>
+                <li>Actions: {npcDetails.actions}</li>
+                <li>Weapons: {npcDetails.weapons}</li>
+                <li>Armour: {npcDetails.armour}</li>
+                <li>Adventuring Skills: {npcDetails.adventuringSkills}</li>
+                <li>Stamina: {npcDetails.stamina}</li>
+              </ul>
+            </Col>
+            <Col xs> <Card.Img className="sheetImage" variant="top" src={npcDetails.image} alt={npcDetails.name} /></Col>
           </Row>
-          <Col xs>Type: {npcDetails.type}</Col>
-          <Col xs>Actions: {npcDetails.actions}</Col>
-          <Col xs>Weapons: {npcDetails.weapons}</Col>
-          <Col xs>Armour: {npcDetails.armour}</Col>
-          <Col xs>Adventuring Skills: {npcDetails.adventuringSkills}</Col>
-          <Col xs>Stamina: {npcDetails.stamina}</Col>
           <Col xs>Notes: {npcDetails.notes}</Col>
           <hr />
           <Row xs={1}>

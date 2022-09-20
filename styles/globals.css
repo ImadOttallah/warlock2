@@ -4,8 +4,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -21,60 +20,75 @@ body {
   background-color: blanchedalmond;
 }
 
-.parchment {
-  position: absolute;
-  display: flex;
-    width: 75%;
-  min-height: calc((1vw + 1vh) * 75);
-  /* center page with absolute position */
-  top: 0%; left: 50%; transform: translate(-50%, 0);
-  margin: 2em 0;
-    padding: 4em;
-    box-shadow: 2px 3px 20px black, 0 0 60px #8a4d0f inset;
-    background: #fffef0;
-  filter: url(#wavy2);
-}
-
-.labelSize{
+.labelSize {
   font-size: 10px;
 }
-.form-floating>.form-control,
-.form-floating>.form-control-plaintext {
+.form-floating > .form-control,
+.form-floating > .form-control-plaintext {
   padding: 0rem 0.75rem;
 }
 
-.form-floating>.form-control,
-.form-floating>.form-control-plaintext,
-.form-floating>.form-select {
+.form-floating > .form-control,
+.form-floating > .form-control-plaintext,
+.form-floating > .form-select {
   height: calc(2.5rem + 2px);
   line-height: 1;
 }
 
-.form-floating>label {
+.form-floating > label {
   padding: 0.5rem 0.75rem;
 }
-
+.logo {
+  width: 40px;
+  height: 40px;
+}
 .card {
   box-shadow: 0 0 10px 0 rgba(100, 100, 100, 0.66);
   transform: translateZ(0);
   display: flex;
 }
-
+.statBlock {
+  background-color: blanchedalmond;
+  border: solid black 1px;
+  margin: 10px;
+  box-shadow: 0 0 10px 0 rgba(100, 100, 100, 0.66);
+  transform: translateZ(0);
+}
+.profileBlock {
+  background-color: blanchedalmond;
+  border: solid black 1px;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: 0 0 10px 0 rgba(100, 100, 100, 0.66);
+  transform: translateZ(0);
+}
 .Card.Img {
   width: '50vw';
   height: '30vh';
 }
-
+.sheetImage {
+  width: 250px;
+  height: 250px;
+  margin: 10px;
+}
+ul {
+  list-style-type: none;
+}
+.tokenImage {
+  border-radius: 50%;
+  border: 2px solid black;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 10px 0 rgba(100, 100, 100, 0.66);
+  transform: translateZ(0);
+}
 .tokenDisplay {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 .tabColor {
-  color: black;
-  border: 1px solid #dee2e6;
-  border-top: transparent;
-  padding: 15px;
+  color: red;
 }
 .characterSheet {
   width: 20rem;
@@ -82,4 +96,10 @@ body {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-image: url(/./images/scroll.png);
+}
+
+.signinLogo {
+  height: 600px;
+  width: 500px;
+  justify-content: center;
 }

@@ -15,5 +15,5 @@ export default function EditCharacters() {
   }, [firebaseKey]);
 
   // TODO: pass object to form
-  return (<CharactersForm obj={editItem} />);
+  return <CharactersForm obj={editItem} />;
 }

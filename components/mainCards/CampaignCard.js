@@ -20,13 +20,15 @@ function CampaignsCard({ campaignsObj, onUpdate }) {
           <li className="list-group-item">Type: {campaignsObj.description}</li>
           <li className="list-group-item">Date Created: {campaignsObj.dateCreated}</li>
         </ul>
-        {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
         <Link href={`/campaigns/${campaignsObj.firebaseKey}`} passHref>
-          <Button size="sm" variant="dark" className="m-2">VIEW</Button>
+          <Button size="sm" variant="dark" className="m-2">
+            VIEW
+          </Button>
         </Link>
-        {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
         <Link href={`/campaigns/edit/${campaignsObj.firebaseKey}`} passHref>
-          <Button size="sm" variant="dark">EDIT</Button>
+          <Button size="sm" variant="dark">
+            EDIT
+          </Button>
         </Link>
         <Button size="sm" variant="danger" onClick={deleteThisCampaign} className="m-2">
           DELETE

@@ -19,11 +19,14 @@ function CharactersToken({ charactersObj, onUpdate }) {
           <li className="list-group-item">Career: {charactersObj.career}</li>
           <li className="list-group-item">Community: {charactersObj.community}</li>
           <Link href={`/characters/${charactersObj.firebaseKey}`} passHref>
-            <Button size="sm" variant="dark" className="m-2">VIEW</Button>
+            <Button size="sm" variant="dark" className="m-2">
+              VIEW
+            </Button>
           </Link>
-          {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
           <Link href={`/characters/edit/${charactersObj.firebaseKey}`} passHref>
-            <Button size="sm" variant="dark">EDIT</Button>
+            <Button size="sm" variant="dark">
+              EDIT
+            </Button>
           </Link>
           <Button size="sm" variant="danger" onClick={removeThisCharacter} className="m-2">
             REMOVE
