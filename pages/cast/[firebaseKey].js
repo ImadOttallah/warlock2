@@ -36,7 +36,7 @@ export default function ViewCast() {
           <Col xs>Notes: {castDetails.notes}</Col>
           <hr />
           <Row xs={1}>
-            <Col xs>Description: {castDetails.description}</Col>
+            <Col xs><div height="100px" className="overflow-scroll">Description: {castDetails.description}</div></Col>
           </Row>
         </Container>
       </Card>

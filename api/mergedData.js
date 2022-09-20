@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { clientCredentials } from '../utils/client';
 import {
-  getCampaignCast, getCampaignCharacters, getCampaignNpc, getCampaigns, getSingleCampaign,
+  getCampaignCast, getCampaignCharacters, getCampaignNpc, getSingleCampaign,
 } from './campaignsData';
-import { getCast, getSingleCast } from './castData';
-import { getCharacters, getSingleCharacter } from './charactersData';
+import { getSingleCast } from './castData';
+import { getSingleCharacter } from './charactersData';
 import { getSingleNpc } from './npcData';
 
 const dbUrl = clientCredentials.databaseURL;
@@ -35,13 +35,6 @@ const viewCampaignDetails = (campaignsFirebaseKey) => new Promise((resolve, reje
         casts: campaignsCastArray,
         npcs: campaignsNpcArray,
       });
-    })
-    .catch((error) => reject(error));
-});
-const viewSearchDetails = (campaignsFirebaseKey) => new Promise((resolve, reject) => {
-  Promise.all([getCast(campaignsFirebaseKey), getCampaigns(campaignsFirebaseKey), getCharacters(campaignsFirebaseKey)])
-    .then(([castName, campaignName, charactersName]) => {
-      resolve({ casts: castName, campaigns: campaignName, characters: charactersName });
     })
     .catch((error) => reject(error));
 });
@@ -78,7 +71,7 @@ const getSingleCampaignCast = (campaignId) => new Promise((resolve, reject) => {
 // });
 
 export {
-  viewCharacterDetails, viewNpcDetails, viewSearchDetails, viewCampaignDetails, viewCastDetails, removeCastfromCampaign, getSingleCampaignCast,
+  viewCharacterDetails, viewNpcDetails, viewCampaignDetails, viewCastDetails, removeCastfromCampaign, getSingleCampaignCast,
 };
 
 // const viewCampaignDetails = (campaignsFirebaseKey) => new Promise((resolve, reject) => {
