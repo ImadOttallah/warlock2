@@ -51,6 +51,7 @@ body {
   background-color: blanchedalmond;
   border: solid black 1px;
   margin: 10px;
+  padding:10px;
   box-shadow: 0 0 10px 0 rgba(100, 100, 100, 0.66);
   transform: translateZ(0);
 }

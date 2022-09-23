@@ -18,8 +18,8 @@ export default function ViewCast() {
         <Container>
           <Row xs={2}>
             <Col xs>
-              <ul className="statBlock  ">
-                <li>{castDetails.name}</li>
+              <ul className="statBlock">
+                <li>Name: {castDetails.name}</li>
                 <li>Type: {castDetails.type}</li>
                 <li>Actions: {castDetails.actions}</li>
                 <li>Weapons: {castDetails.weapons}</li>
@@ -27,17 +27,16 @@ export default function ViewCast() {
                 <li>Adventuring Skills: {castDetails.adventuringSkills}</li>
                 <li>Stamina: {castDetails.stamina}</li>
               </ul>
+              <ul className="statBlock">
+                <li className="list-group-item"><h6>Description:</h6> {castDetails.description}</li>
+              </ul>
             </Col>
             <Col xs>
               {' '}
               <Card.Img className="sheetImage" variant="top" src={castDetails.image} alt={castDetails.name} />
             </Col>
           </Row>
-          <Col xs>Notes: {castDetails.notes}</Col>
-          <hr />
-          <Row xs={1}>
-            <Col xs><div height="100px" className="overflow-scroll">Description: {castDetails.description}</div></Col>
-          </Row>
+          <Col xs className="statBlock"><h6>Notes:</h6> {castDetails.notes}</Col>
         </Container>
       </Card>
     </>

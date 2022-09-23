@@ -10,8 +10,8 @@ export default function Profile() {
       <User
         name={user.displayname}
         email={user.email}
-        image={user.photoURL}
         lastLogin={user.metadata.lastSignInTime}
+        image={user.photoURL}
       />
       <button size="sm" type="button" onClick={signOut}>Sign Out</button>
     </div>

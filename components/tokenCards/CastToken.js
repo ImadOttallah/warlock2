@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Card, Button } from 'react-bootstrap';
+import {
+  Card, Button, Container, Row, Col,
+} from 'react-bootstrap';
 import { updateCast } from '../../api/castData';
 
 function CastToken({ castObj, onUpdate }) {
@@ -12,24 +14,34 @@ function CastToken({ castObj, onUpdate }) {
   };
 
   return (
-    <Card border="dark" style={{ width: '16rem' }}>
+    <Card border="dark" style={{ width: '20rem' }}>
       <Card.Body>
-        <Card.Title>{castObj.name}</Card.Title>
-        <li className="list-group-item">Type: {castObj.type}</li>
-        <li className="list-group-item">Stamina: {castObj.stamina}</li>
-        <Link href={`/cast/${castObj.firebaseKey}`} passHref>
-          <Button size="sm" variant="dark" className="m-2">
-            VIEW
+        <Container>
+          <Row>
+            <Col>
+              <Card.Title>{castObj.name}</Card.Title>
+              <li className="list-group-item">Type: {castObj.type}</li>
+              <li className="list-group-item">Stamina: {castObj.stamina}</li>
+            </Col>
+            <Col>
+              <Card.Img className="tokenImage" variant="top" src={castObj.image} alt={castObj.name} />
+            </Col>
+          </Row>
+
+          <Link href={`/cast/${castObj.firebaseKey}`} passHref>
+            <Button size="sm" variant="dark" className="m-2">
+              VIEW
+            </Button>
+          </Link>
+          <Link href={`/cast/edit/${castObj.firebaseKey}`} passHref>
+            <Button size="sm" variant="dark">
+              EDIT
+            </Button>
+          </Link>
+          <Button size="sm" variant="danger" onClick={removeThisCast} className="m-2">
+            REMOVE
           </Button>
-        </Link>
-        <Link href={`/cast/edit/${castObj.firebaseKey}`} passHref>
-          <Button size="sm" variant="dark">
-            EDIT
-          </Button>
-        </Link>
-        <Button size="sm" variant="danger" onClick={removeThisCast} className="m-2">
-          REMOVE
-        </Button>
+        </Container>
       </Card.Body>
     </Card>
   );

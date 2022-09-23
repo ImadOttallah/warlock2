@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { Col, Row } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { signOut } from '../utils/auth';
 
@@ -22,11 +23,18 @@ function UserProfile() {
           <Modal.Title>Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="profileBlock">
-            <p>Name: {user.displayName}</p>
-            <p>Email: {user.email}</p>
-            <img src={user.photoURL} alt={user} />
-          </div>
+          <Row className="profileBlock">
+
+            <Col>
+              <p>Name: {user.displayName}</p>
+              <p>Email: {user.email}</p>
+              <p>Last Login: {user.metadata.lastSignInTime}</p>
+            </Col>
+            <Col>
+              <img className="tokenImage" src={user.photoURL} alt={user} />
+            </Col>
+
+          </Row>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
