@@ -31,7 +31,6 @@ ___
 ## Screen Shots 
 <img width="1725" alt="Screen Shot 2022-09-22 at 8 14 49 PM" src="https://user-images.githubusercontent.com/99231245/191883178-332ebe8d-a8cf-4054-989f-8845f4586e34.png">
 <img width="1728" alt="Screen Shot 2022-09-22 at 8 15 15 PM" src="https://user-images.githubusercontent.com/99231245/191883200-77825a79-d9d3-42d5-891c-3ffecf0d4dd1.png">
-<img width="1728" alt="Screen Shot 2022-09-22 at 8 52 14 PM" src="https://user-images.githubusercontent.com/99231245/191883419-c6d19bd0-06bb-4976-bbd2-8a39b0b42037.png">
 <img width="1728" alt="Screen Shot 2022-09-22 at 8 16 18 PM" src="https://user-images.githubusercontent.com/99231245/191883487-b1972bc0-d87f-4679-911c-0ee8056223ce.png">
 <img width="1728" alt="Screen Shot 2022-09-22 at 8 17 37 PM" src="https://user-images.githubusercontent.com/99231245/191883447-5ce295ba-0527-47d7-aec1-e398e245ff22.png">
 <img width="1728" alt="Screen Shot 2022-09-22 at 8 18 03 PM" src="https://user-images.githubusercontent.com/99231245/191883454-18ddbccc-7e6d-4c1e-9506-5a823d121f40.png">
