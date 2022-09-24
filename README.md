@@ -37,4 +37,4 @@ ___
 
 
 ## Loom Video
-Loom Video 1 https://warlock-grimoire.netlify.app - 23 September 2022
+Loom Video 1 <div style="position: relative; padding-bottom: 64.63195691202873%; height: 0;"><iframe src="https://www.loom.com/embed/0fc52a054aa54894906bc9ac1eb49b60" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
