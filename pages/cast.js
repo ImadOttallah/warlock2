@@ -30,7 +30,7 @@ function Cast() {
           <Col>
             <Link href="/cast/new" passHref>
               <Button size="sm" variant="dark">
-                Create Cast
+                Create Creature
               </Button>
             </Link>
           </Col>
