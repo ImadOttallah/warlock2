@@ -27,17 +27,26 @@ export default function ImageSwapper() {
   return (
     <>
       <div
+        className="text-center d-flex flex-column justify-content-center align-content-center"
+        style={{
+          maxWidth: '400px',
+          margin: '0 auto',
+          padding: '5px',
+        }}
+      >
+        <p>Welcome to the Warlock Grimoire!
+        </p>
+      </div>
+      <div
         className="text-center d-flex flex-column justify-content-center characterSheet align-content-center"
         style={{
-          height: '90vh',
+          height: '80vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',
         }}
       >
         <Image alt="Images" src={images[currentIndex]} />
-
-        <p>hasdfdasdahgsgdfasfdashfg</p>
       </div>
     </>
   );

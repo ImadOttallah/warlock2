@@ -1,78 +1,39 @@
-# React/Next.js Template
-
-[See Live Demo of this Template](https://drt-next-js-template.netlify.app/)
-
-## Topics
-- [Get Started](#get-started)
-- [Starting the Project](#starting-the-project)
-- [Using axios](#using-axios)
-- [Deploying on Netlify](#deploying-on-netlify)
+# Warlock Grimoire
+This app is used to assist Players and Game Masters of the Warlock! table top roleplaying game.
 ___
-## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
+## Details
+[Project Board](https://github.com/users/ImadOttallah/projects/5) 
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
+[Entity Relationship Diagram](https://dbdiagram.io/d/62fafe4fc2d9cf52fab0efd8) 
 
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
+[Flow Chart](https://www.figma.com/file/z0Me7Tu2XwPrMgcqkxXSEz/Warlock!-Grimoire) 
 
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. Create a `.env` file at the root of the project
-1. Copy/Paste the contents of the `.env.sample` file to your newly created `.env` file.
-1. Copy over all of your Firebase values into the `.env` file.
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
+[Wireframe](https://www.figma.com/file/lXiPVYA0GCInCjPy28Q2mW/Warlock!) 
 
-### If you see this, you are set to go!
-<img width="450" alt="Screen Shot 2022-07-06 at 1 07 27 PM" src="https://user-images.githubusercontent.com/29741570/177615077-9b6a75bc-0260-4d29-bb88-bd95a3140687.png">
+[Slide Presentaion](https://docs.google.com/presentation/d/14Xukhc1xjtnMbCiNxgN6t4CzXro80YkYjKzAVnNRpm8/edit#slide=id.g1402aa46a19_0_5)
+
+[Deployed Site](https://warlock-grimoire.netlify.app)
+
+## Features
+- The User can create, edit, and delete characters.
+- The User can create edit, and delete creatures.
+- The User can create edit, and delete non player characters (NPC).
+- The User can create edit, and delete campaigns.
+- The User can add characters, npc, and creatures to a campaign.
+
+## Features to Come
+- The User can attach Campaigns of a map and use the map to filter
+- The User can share Characters they have created with other Users
+- Create a Dice roller Model
+- Add characters, npc, and creatures from campaign page
 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Screen Shots 
+<img width="500" alt="Screen Shot 2022-09-22 at 8 14 49 PM" src="https://user-images.githubusercontent.com/99231245/191883178-332ebe8d-a8cf-4054-989f-8845f4586e34.png"> <img width="500" alt="Screen Shot 2022-09-22 at 8 15 15 PM" src="https://user-images.githubusercontent.com/99231245/191883200-77825a79-d9d3-42d5-891c-3ffecf0d4dd1.png">
+<img width="500" alt="Screen Shot 2022-09-22 at 8 16 18 PM" src="https://user-images.githubusercontent.com/99231245/191883487-b1972bc0-d87f-4679-911c-0ee8056223ce.png"> <img width="500" alt="Screen Shot 2022-09-22 at 8 17 37 PM" src="https://user-images.githubusercontent.com/99231245/191883447-5ce295ba-0527-47d7-aec1-e398e245ff22.png">
+<img width="500" alt="Screen Shot 2022-09-22 at 8 18 03 PM" src="https://user-images.githubusercontent.com/99231245/191883454-18ddbccc-7e6d-4c1e-9506-5a823d121f40.png"> <img width="500" alt="Screen Shot 2022-09-22 at 8 17 14 PM" src="https://user-images.githubusercontent.com/99231245/191883462-1c117e7c-02c8-4f4a-a9a2-3b6becfdc848.png">
 
-**NOTES:** 
-- If you see the following error, you did not follow all the setup steps correctly and failed to add your Firebase creds. Go back and do that NOW.
 
-<img width="1043" alt="Screen Shot 2022-07-06 at 11 18 45 AM" src="https://user-images.githubusercontent.com/29741570/177612501-c2628f18-4bbd-4de9-aae6-27ffba1172d6.png">
 
-### Using Axios
-> For every file you will need to make an XHR request in, you will need to require Axios
-```js
-import axios from 'axios';
 
-const examplePromise = () => {
-  axios.get('http://localhost:3001/example')
-    .then((data) => {
-      console.warn(data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-});
-```
-
-### Deploying on Netlify
-Netlify will automatically detect your project and prepopulate the settings, but should something go wrong and it does not, here are the commands:
-
-- Build Command: `npm run build`
-- Publish directory: `.next`
-
-#### Additional Steps to Take on Netlify
-- Add Environmental Variables
-    - Any Enviromental variables you are using in your `.env` file should be added to Netlify. 
-        - Go to Site settings > Build & deploy > Environment > Environment variables and the keys and values there.
-
-- Update Firebase URL Settings
-    - In Firebase under Authentication select sign in methods, scroll to Authorized domains. Add your Netlify URL.
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Loom Video

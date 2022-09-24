@@ -14,7 +14,7 @@ function NpcToken({ npcObj, onUpdate }) {
   };
 
   return (
-    <Card border="dark" style={{ width: '18rem' }}>
+    <Card border="dark" style={{ width: '20rem' }}>
       <Card.Body>
         <Container>
           <Row>
