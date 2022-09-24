@@ -41,7 +41,8 @@ export default function ViewCampaigns() {
           </Row>
           <hr />
           <Row xs={1}>
-            <Tabs defaultActiveKey="profile" id="fill-tab-example" className="mb-3 test" fill>
+            <Tabs defaultActiveKey="profile" id="fill-tab-example" className="mb-3" fill>
+
               <Tab eventKey="characters" title="Characters">
                 <Col className="tokenDisplay" xs>
                   {campaignDetails.characters?.map((character) => (
