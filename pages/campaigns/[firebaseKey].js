@@ -26,18 +26,22 @@ export default function ViewCampaigns() {
       <Card style={{ margin: '10px' }}>
         <Container>
           <Row xs={2}>
-            <Col xs> Name: {campaignDetails.name}</Col>
+            <Col xs>
+              <ul className="statBlock">
+                <li>Name: {campaignDetails.name}</li>
+                <li className="list-group-item">Date Created: {campaignDetails.dateCreated}</li>
+              </ul>
+              <ul className="statBlock">
+                <li className="list-group-item">Description: {campaignDetails.description}</li>
+              </ul>
+            </Col>
             <Col xs>
               <Card.Img variant="top" src={campaignDetails.image} alt={campaignDetails.name} style={{ height: '200px' }} />
             </Col>
           </Row>
           <hr />
           <Row xs={1}>
-            <Col xs>Description: {campaignDetails.description}</Col>
-          </Row>
-          <hr />
-          <Row xs={1}>
-            <Tabs defaultActiveKey="profile" id="fill-tab-example" className="mb-3" fill>
+            <Tabs defaultActiveKey="profile" id="fill-tab-example" className="mb-3 test" fill>
               <Tab eventKey="characters" title="Characters">
                 <Col className="tokenDisplay" xs>
                   {campaignDetails.characters?.map((character) => (
@@ -45,7 +49,7 @@ export default function ViewCampaigns() {
                   ))}
                 </Col>
               </Tab>
-              <Tab eventKey="cast" title="Cast">
+              <Tab eventKey="creatures" title="Creatures">
                 <div className="tokenDisplay">
                   <Col className="tokenDisplay" xs>
                     {campaignDetails.casts?.map((casts) => (

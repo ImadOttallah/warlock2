@@ -56,6 +56,7 @@ const initalState = {
   traits: '',
   notes: '',
   spells: '',
+  description: '',
   campaign_name: '',
 };
 
@@ -398,6 +399,13 @@ export default function CharactersForm({ obj }) {
         </Form.Group>
       </Row>
       <Row className="mb-2">
+        <Form.Group as={Col} controlId="formGridDescription">
+          <FloatingLabel size="sm" controlId="floatingTextarea" label="Description" className="mb-1">
+            <Form.Control size="sm" type="text" placeholder="Description" name="description" value={formInput.description} onChange={handleChange} required />
+          </FloatingLabel>
+        </Form.Group>
+      </Row>
+      <Row className="mb-2">
         <Form.Group as={Col} controlId="formGridNotes">
           <FloatingLabel size="sm" controlId="floatingTextarea" label="Notes" className="mb-1">
             <Form.Control size="sm" type="text" placeholder="Notes" name="notes" value={formInput.notes} onChange={handleChange} />
@@ -472,6 +480,7 @@ CharactersForm.propTypes = {
     traits: PropTypes.string,
     notes: PropTypes.string,
     spells: PropTypes.string,
+    description: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
 };

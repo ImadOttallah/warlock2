@@ -28,10 +28,13 @@ export default function ViewCharacters() {
                 <li> Luck: {characterDetails.luck}</li>
                 <li>Pluck: {characterDetails.pluck}</li>
               </ul>
+              <ul className="statBlock">
+                <li className="list-group-item"><h6>Description:</h6> {characterDetails.description}</li>
+              </ul>
             </Col>
 
             <Col xs>
-              <Card.Img variant="top" src={characterDetails.image} alt={characterDetails.name} style={{ height: '200px' }} />
+              <Card.Img variant="top" src={characterDetails.image} alt={characterDetails.name} />
             </Col>
           </Row>
           <Row xs={1}>
