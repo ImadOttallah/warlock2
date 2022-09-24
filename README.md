@@ -41,3 +41,5 @@ Loom Video 1 <a href="https://www.loom.com/share/0fc52a054aa54894906bc9ac1eb49b6
     <p>https://warlock-grimoire.netlify.app - 23 September 2022 - Watch Video</p>
     <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/0fc52a054aa54894906bc9ac1eb49b60-with-play.gif">
   </a>
+Loom Video 2 https://warlock-grimoire.netlify.app/cast - 23 September 2022 - Watch Video
+
