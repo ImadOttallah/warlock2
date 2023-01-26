@@ -3,7 +3,7 @@ import { clientCredentials } from '../utils/client';
 
 const dbUrl = clientCredentials.databaseURL;
 
-// GET ALL CAMPAIGNS
+// TESE=T GET ALL CAMPAIGNS
 const getCampaigns = (uid) => new Promise((resolve, reject) => {
   axios
     .get(`${dbUrl}/campaigns.json?orderBy="uid"&equalTo="${uid}"`)
