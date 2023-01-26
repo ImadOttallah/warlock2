@@ -1,21 +1,18 @@
 import axios from 'axios';
-import { clientCredentials } from '../utils/client';
+import { clientCredentials } from '../client';
 
 const dbUrl = clientCredentials.databaseURL;
 
-// TESE=T GET ALL CAMPAIGNS
-const getCampaigns = (uid) => new Promise((resolve, reject) => {
-  axios
-    .get(`${dbUrl}/campaigns.json?orderBy="uid"&equalTo="${uid}"`)
-    .then((response) => {
-      if (response.data) {
-        resolve(Object.values(response.data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
+// TEST GET ALL CAMPAIGNS
+const getCampaigns = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/campaigns`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
 });
+
+// eslint-disable-next-line import/prefer-default-export
+
 // CREATE CAMPAIGNS
 const createCampaigns = (campaignsObj) => new Promise((resolve, reject) => {
   axios
