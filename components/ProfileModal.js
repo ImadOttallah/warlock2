@@ -28,7 +28,6 @@ function UserProfile() {
             <Col>
               <p>Name: {user.displayName}</p>
               <p>Email: {user.email}</p>
-              <p>Last Login: {user.metadata.lastSignInTime}</p>
             </Col>
             <Col>
               <img className="tokenImage" src={user.photoURL} alt={user} />
