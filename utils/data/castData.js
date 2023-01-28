@@ -1,12 +1,11 @@
 import axios from 'axios';
-import { clientCredentials } from '../utils/client';
+import { clientCredentials } from '../client';
 
 const dbUrl = clientCredentials.databaseURL;
 
 // GET ALL CAST
-const getCast = (uid) => new Promise((resolve, reject) => {
-  axios
-    .get(`${dbUrl}/cast.json?orderBy="uid"&equalTo="${uid}"`)
+const getCast = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/casts`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));
@@ -17,17 +16,20 @@ const getCast = (uid) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 // CREATE CAST
-const createCast = (castObj) => new Promise((resolve, reject) => {
-  axios
-    .post(`${dbUrl}/cast.json`, castObj)
-    .then((response) => {
-      const payload = { firebaseKey: response.data.name };
-      axios.patch(`${dbUrl}/cast/${response.data.name}.json`, payload).then(() => {
-        getCast(castObj.uid).then(resolve);
-      });
-    })
+
+const createCast = (casts) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/casts`, {
+    method: 'POST',
+    body: JSON.stringify(casts),
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then((resp) => resolve(resp.json()))
     .catch(reject);
 });
+
 // DELETE CAST
 const deleteSingleCast = (firebaseKey, uid) => new Promise((resolve, reject) => {
   axios

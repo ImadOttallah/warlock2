@@ -1,55 +1,49 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import {
-  Button, Col, Container, Row,
-} from 'react-bootstrap';
-import { useAuth } from '../utils/context/authContext';
-import { getCampaigns } from '../api/campaignsData';
-import CampaignsCard from '../components/mainCards/CampaignCard';
-import SearchCampaigns from '../components/search/SearchCampaigns';
+// /* eslint-disable react-hooks/exhaustive-deps */
+// /* eslint-disable react-hooks/exhaustive-deps */
+// import React, { useEffect, useState } from 'react';
+// import Button from 'react-bootstrap';
+// import { useRouter } from 'next/router';
+// import { getCampaigns } from '../api/campaignsData';
+// import CampaignsCard from '../components/mainCards/CampaignCard';
 
-function Campaigns() {
-  const [campaign, setCampaign] = useState([]);
-  const [filteredCampaign, setFilteredCampaign] = useState([]);
-  const { user } = useAuth();
+// function Campaigns() {
+//   const [campaigns, setCampaigns] = useState([]);
+//   const router = useRouter();
 
-  const getAllTheCampaigns = () => {
-    getCampaigns(user.uid).then((campaignsArray) => {
-      setCampaign(campaignsArray);
-      setFilteredCampaign(campaignsArray);
-    });
-  };
+//   const getAllTheCampaigns = () => {
+//     getCampaigns().then((campaignsArray) => {
+//       setCampaigns(campaignsArray);
+//     });
+//   };
 
-  useEffect(() => {
-    getAllTheCampaigns();
-  }, []);
+//   useEffect(() => {
+//     getAllTheCampaigns();
+//   }, []);
 
-  return (
-    <div className="text-center my-4">
-      <Container>
-        <Row>
-          <Col>
-            <Link href="/campaigns/new" passHref>
-              <Button size="sm" variant="dark">
-                Create a Campaign
-              </Button>
-            </Link>
-          </Col>
-          <Col>
-            {' '}
-            <SearchCampaigns campaign={campaign} setFilteredCampaign={setFilteredCampaign} />
-          </Col>
-        </Row>
-      </Container>
-      <div className="d-flex flex-wrap">
-        {filteredCampaign.map((campaigns) => (
-          <CampaignsCard key={campaigns.firebaseKey} campaignsObj={campaigns} onUpdate={getAllTheCampaigns} />
-        ))}
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <article className="campaigns">
+//       <h1>Campaigns</h1>
+//       <Button
+//         onClick={() => {
+//           router.push('/campaigns/new');
+//         }}
+//       >
+//         Create a Campaign
+//       </Button>
+//       {campaigns.map((campaign) => (
+//         <section key={`campaign--${campaign.id}`} className="campaign">
+//           <CampaignsCard
+//             id={campaign.id}
+//             image={campaign.image}
+//             name={campaign.name}
+//             description={campaign.description}
+//             dateCreated={campaign.dateCreated}
+//             onUpdate={getAllTheCampaigns}
+//           />
+//         </section>
+//       ))}
+//     </article>
+//   );
+// }
 
-export default Campaigns;
+// export default Campaigns;
