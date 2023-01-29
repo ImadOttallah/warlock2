@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { getCampaigns } from '../../utils/data/campaignData';
 import CampaignsCard from '../../components/mainCards/CampaignCard';
 
-function Campaigns() {
+function Home() {
   const [campaigns, setCampaigns] = useState([]);
   const router = useRouter();
   const getContent = () => {
@@ -14,6 +14,7 @@ function Campaigns() {
   useEffect(() => {
     getContent();
   }, []);
+  console.warn(campaigns);
 
   return (
     <article className="campaigns">
@@ -31,7 +32,6 @@ function Campaigns() {
             id={campaign.id}
             image={campaign.image}
             description={campaign.description}
-            dateCreated={campaign.dateCreated}
             name={campaign.name}
             onUpdate={getContent}
           />
@@ -40,4 +40,4 @@ function Campaigns() {
     </article>
   );
 }
-export default Campaigns;
+export default Home;

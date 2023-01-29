@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
-import { deleteCampaigns } from '../../api/campaignsData';
+import { deleteCampaigns } from '../../utils/data/campaignData';
 
 function CampaignsCard({
   image,
   name,
   description,
-  dateCreated,
   id,
   onUpdate,
 }) {
@@ -24,8 +23,7 @@ function CampaignsCard({
       <Card.Body>
         <Card.Title> {name}</Card.Title>
         <ul className="list-group">
-          <li className="list-group-item">Type: {description}</li>
-          <li className="list-group-item">Date Created: {dateCreated}</li>
+          <li className="list-group-item">Description: {description}</li>
         </ul>
         <Link href={`/campaigns/${id}`} passHref>
           <Button size="sm" variant="dark" className="m-2">
@@ -49,7 +47,6 @@ CampaignsCard.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  dateCreated: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

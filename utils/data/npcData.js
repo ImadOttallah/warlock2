@@ -1,25 +1,24 @@
 import { clientCredentials } from '../client';
 
 // GET ALL CAST
-const getCast = () => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/casts`)
+const getNpc = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/npcs`)
     .then((response) => response.json())
     .then(resolve)
     .catch(reject);
 });
-
-const getCastById = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/casts/${id}`)
+const getNpcById = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/npcs/${id}`)
     .then((response) => response.json())
     .then(resolve)
     .catch(reject);
 });
 
 // CREATE CAST
-const createCast = (cast) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/casts`, {
+const createNpc = (npc) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/npcs`, {
     method: 'POST',
-    body: JSON.stringify(cast),
+    body: JSON.stringify(npc),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -30,8 +29,8 @@ const createCast = (cast) => new Promise((resolve, reject) => {
 });
 
 // DELETE CAST
-const deleteCast = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/casts/${id}`, {
+const deleteNpc = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/npcs/${id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
   })
@@ -40,8 +39,8 @@ const deleteCast = (id) => new Promise((resolve, reject) => {
 });
 
 // UPDATE CAST
-const updateCast = (cast, id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/casts/${id}`, {
+const updateNpc = (cast, id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/npcs/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -53,5 +52,5 @@ const updateCast = (cast, id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getCast, getCastById, updateCast, createCast, deleteCast,
+  getNpc, getNpcById, updateNpc, createNpc, deleteNpc,
 };
