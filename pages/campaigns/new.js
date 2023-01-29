@@ -5,7 +5,7 @@ const NewCampaign = () => {
   const { user } = useAuth();
   return (
     <div>
-      <h2>Register A New Event</h2>
+      <h2>Create Campaign</h2>
       <CampaignsForm user={user} />
     </div>
   );

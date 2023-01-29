@@ -1,32 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
-  Button, Form, Row, Col, FloatingLabel,
+  Button, Form,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { createCampaign, updateCampaigns } from '../../utils/data/campaignData';
 import { useAuth } from '../../utils/context/authContext';
-import { createCampaigns, getCampaigns, updateCampaigns } from '../../api/campaignsData';
 
 const initalState = {
   name: '',
   image: '',
-  dateCreated: '',
   description: '',
-  notes: '',
 };
-
-function CampaignsForm({ obj }) {
+const CampaignsForm = ({ obj }) => {
   const [formInput, setFormInput] = useState(initalState);
-  const [campaign, setCampaign] = useState([]);
+  const [currentCampaign, setCurrentCampaign] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
-
-  useEffect(() => {
-    getCampaigns(user.uid).then(setCampaign);
-    console.warn(campaign);
-    if (obj.firebaseKey) setFormInput(obj);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [obj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,81 +26,65 @@ function CampaignsForm({ obj }) {
     }));
   };
 
-  const date = () => {
-    const d = new Date();
-    const dateValue = d.toLocaleString();
-    return dateValue;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
-      updateCampaigns(formInput).then(() => router.push(`/campaigns/${obj.firebaseKey}`));
+    const campaign = {
+      name: currentCampaign.name,
+      image: currentCampaign.image,
+      dateCreated: currentCampaign.dateCreated,
+      description: currentCampaign.description,
+      user_id: user.uid,
+    };
+    console.warn(campaign);
+    if (obj.id) {
+      updateCampaigns(campaign, obj.id).then(() => router.push('/campaigns'));
     } else {
-      const payload = { ...formInput, dateCreated: date(), uid: user.uid };
-      createCampaigns(payload).then(() => {
-        router.push('/campaigns');
-      });
+      createCampaign(campaign).then(() => router.push('/campaigns'));
     }
   };
-  return (
-    <Form className="form-floating" onSubmit={handleSubmit}>
-      <h2 className="text-black mt-2">{obj.firebaseKey ? 'Update' : 'Create'} Campaign</h2>
-      <Row className="mb-2">
-        <Form.Group as={Col} controlId="formGridName">
-          <FloatingLabel controlId="floatingTextarea" label="Name" className="mb-1">
-            <Form.Control size="sm" type="text" placeholder="Name" name="name" value={formInput.name} onChange={handleChange} required />
-          </FloatingLabel>
-        </Form.Group>
-      </Row>
-      <Row>
-        <Form.Group as={Col} controlId="formGridImage">
-          <FloatingLabel size="sm" controlId="floatingTextarea" label="Image" className="mb-1">
-            <Form.Control size="sm" type="url" placeholder="Image" name="image" value={formInput.image} onChange={handleChange} required />
-          </FloatingLabel>
-        </Form.Group>
-      </Row>
 
-      <Row className="mb-2">
-        <Form.Group as={Col} controlId="formGridDescription">
-          <FloatingLabel size="sm" controlId="floatingTextarea" label="Description" className="mb-1">
-            <Form.Control size="sm" type="text" placeholder="Description" name="description" value={formInput.description} onChange={handleChange} required />
-          </FloatingLabel>
+  useEffect(() => {
+    if (obj.id) {
+      const editCampaign = {
+        name: obj.name,
+        image: obj.image,
+        description: obj.description,
+      };
+      setCurrentCampaign(editCampaign);
+    }
+  }, [obj]);
+  console.warn(formInput);
+
+  return (
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Name</Form.Label>
+          <Form.Control name="name" required value={currentCampaign.name} onChange={handleChange} />
+          <Form.Label>Image</Form.Label>
+          <Form.Control name="image" required value={currentCampaign.image} onChange={handleChange} />
+          <Form.Label>Description</Form.Label>
+          <Form.Control name="description" required value={currentCampaign.description} onChange={handleChange} />
         </Form.Group>
-      </Row>
-      <Row>
-        <Form.Group as={Col} controlId="formGridNotes">
-          <FloatingLabel size="sm" controlId="floatingTextarea" label="Notes" className="mb-1">
-            <Form.Control size="sm" type="text" placeholder="Notes" name="notes" value={formInput.notes} onChange={handleChange} required />
-          </FloatingLabel>
-        </Form.Group>
-      </Row>
-      <Form.Check
-        type="switch"
-        id="public"
-        name="public"
-        label="Is This Campaign Public?"
-        checked={formInput.public}
-        onChange={(e) => setFormInput((prevState) => ({
-          ...prevState,
-          public: e.target.checked,
-        }))}
-      />
-      <hr />
-      <Button size="sm" variant="dark" type="submit">
-        {obj.firebaseKey ? 'Update' : 'Create'} Campaign
-      </Button>
-    </Form>
+        {/* TODO: create the rest of the input fields */}
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </>
   );
-}
+};
+
 CampaignsForm.propTypes = {
+  user: PropTypes.shape({
+    uid: PropTypes.string,
+  }).isRequired,
   obj: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     image: PropTypes.string,
-    dateCreated: PropTypes.string,
     description: PropTypes.string,
-    notes: PropTypes.string,
-    firebaseKey: PropTypes.string,
   }),
 };
 

@@ -8,6 +8,13 @@ const getCampaigns = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getCampaignById = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/campaigns/${id}`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 // CREATE CAMPAIGNS
 const createCampaign = (campaign) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/campaigns`, {
@@ -85,5 +92,5 @@ const getCampaignNpc = (id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getCampaigns, getCampaignNpc, updateCampaigns, createCampaign, deleteCampaigns, getCampaignCharacters, getCampaignCast,
+  getCampaigns, getCampaignNpc, updateCampaigns, createCampaign, deleteCampaigns, getCampaignCharacters, getCampaignCast, getCampaignById,
 };

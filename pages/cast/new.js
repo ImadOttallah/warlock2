@@ -1,6 +1,14 @@
-import React from 'react';
+import { useAuth } from '../../utils/context/authContext';
 import CastForm from '../../components/forms/CastForm';
 
-export default function AddCast() {
-  return <CastForm />;
-}
+const NewCast = () => {
+  const { user } = useAuth();
+  return (
+    <div>
+      <h2>Create Creature</h2>
+      <CastForm user={user} />
+    </div>
+  );
+};
+
+export default NewCast;

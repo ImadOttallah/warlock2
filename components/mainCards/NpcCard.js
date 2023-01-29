@@ -2,30 +2,44 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
-import { deleteNpc } from '../../api/npcData';
+import { deleteNpc } from '../../utils/data/npcData';
 
-function NpcCard({ npcObj, onUpdate }) {
+function NpcCard({
+  name,
+  description,
+  image,
+  actions,
+  weapon,
+  armour,
+  adventuringSkills,
+  stamina,
+  id,
+  onUpdate,
+}) {
   const deleteThisNpc = () => {
-    if (window.confirm(`Delete ${npcObj.name}?`)) {
-      deleteNpc(npcObj.firebaseKey).then(() => onUpdate());
+    if (window.confirm(`Delete ${name}?`)) {
+      deleteNpc(id).then(() => onUpdate());
     }
   };
-
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={npcObj.image} alt={npcObj.name} style={{ height: '400px' }} />
+      <Card.Img variant="top" src={image} alt={name} style={{ height: '400px' }} />
       <Card.Body>
-        <Card.Title>{npcObj.name}</Card.Title>
+        <Card.Title> {name}</Card.Title>
         <ul className="list-group">
-          <li className="list-group-item">Type: {npcObj.type}</li>
-          <li className="list-group-item">Stamina: {npcObj.stamina}</li>
+          <li className="list-group-item">Description: {description}</li>
+          <li className="list-group-item">Actions: {actions}</li>
+          <li className="list-group-item">Weapon: {weapon}</li>
+          <li className="list-group-item">Armour: {armour}</li>
+          <li className="list-group-item">Adventuring Skills: {adventuringSkills}</li>
+          <li className="list-group-item">Stamina: {stamina}</li>
         </ul>
-        <Link href={`/npc/${npcObj.firebaseKey}`} passHref>
+        <Link href={`/npc/${id}`} passHref>
           <Button size="sm" variant="dark" className="m-2">
             VIEW
           </Button>
         </Link>
-        <Link href={`/npc/edit/${npcObj.firebaseKey}`} passHref>
+        <Link href={`/npc/edit/${id}`} passHref>
           <Button size="sm" variant="dark">
             EDIT
           </Button>
@@ -39,14 +53,15 @@ function NpcCard({ npcObj, onUpdate }) {
 }
 
 NpcCard.propTypes = {
-  npcObj: PropTypes.shape({
-    image: PropTypes.string,
-    name: PropTypes.string,
-    type: PropTypes.string,
-    community: PropTypes.string,
-    stamina: PropTypes.string,
-    firebaseKey: PropTypes.string,
-  }).isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  actions: PropTypes.string.isRequired,
+  weapon: PropTypes.string.isRequired,
+  armour: PropTypes.string.isRequired,
+  adventuringSkills: PropTypes.string.isRequired,
+  stamina: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   onUpdate: PropTypes.func.isRequired,
 };
 
