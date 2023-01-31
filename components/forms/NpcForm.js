@@ -18,6 +18,7 @@ const initalState = {
   adventuringSkills: '',
   stamina: '',
   npc_type: 'null',
+
 };
 
 const NpcForm = ({ obj }) => {
@@ -56,7 +57,7 @@ const NpcForm = ({ obj }) => {
   };
 
   useEffect(() => {
-    if (obj.id) {
+    if (obj?.id) {
       const editNpc = {
         name: obj.name,
         description: obj.description,
@@ -129,14 +130,14 @@ NpcForm.propTypes = {
     adventuringSkills: PropTypes.string,
     stamina: PropTypes.string,
     npc_type: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
+      id: PropTypes.number,
+      name: PropTypes.string,
     }),
-  }),
+  }).isRequired,
 };
 
-NpcForm.defaultProps = {
-  obj: initalState,
-};
+// NpcForm.defaultProps = {
+//   obj: initalState,
+// };
 
 export default NpcForm;

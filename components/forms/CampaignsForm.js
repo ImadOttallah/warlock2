@@ -36,7 +36,7 @@ const CampaignsForm = ({ obj }) => {
       user_id: user.uid,
     };
     console.warn(campaign);
-    if (obj.id) {
+    if (obj?.id) {
       updateCampaigns(campaign, obj.id).then(() => router.push('/campaigns'));
     } else {
       createCampaign(campaign).then(() => router.push('/campaigns'));
@@ -44,7 +44,7 @@ const CampaignsForm = ({ obj }) => {
   };
 
   useEffect(() => {
-    if (obj.id) {
+    if (obj?.id) {
       const editCampaign = {
         name: obj.name,
         image: obj.image,
@@ -85,11 +85,11 @@ CampaignsForm.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string,
     description: PropTypes.string,
-  }),
+  }).isRequired,
 };
 
-CampaignsForm.defaultProps = {
-  obj: initalState,
-};
+// CampaignsForm.defaultProps = {
+//   obj: initalState,
+// };
 
 export default CampaignsForm;
