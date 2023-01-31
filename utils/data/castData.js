@@ -52,6 +52,12 @@ const updateCast = (cast, id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getCastCategories = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/cast_categories`)
+    .then((resp) => resolve(resp.json()))
+    .catch(reject);
+});
+
 export {
-  getCast, getCastById, updateCast, createCast, deleteCast,
+  getCast, getCastById, updateCast, createCast, deleteCast, getCastCategories,
 };

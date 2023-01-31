@@ -4,7 +4,7 @@ import {
   Button, Form,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { createCast, updateCast } from '../../utils/data/castData';
+import { createCast, getCastCategories, updateCast } from '../../utils/data/castData';
 
 const initalState = {
   name: '',
@@ -15,16 +15,17 @@ const initalState = {
   armour: '',
   adventuringSkills: '',
   stamina: '',
+  castCategory: 0,
 };
 
 const CastForm = ({ user, obj }) => {
-  const [formInput, setFormInput] = useState(initalState);
-  const [currentCast, setCurrentCast] = useState([]);
+  const [castCategory, setcastCategory] = useState([]);
+  const [currentCast, setCurrentCast] = useState([initalState]);
   const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormInput((prevState) => ({
+    setcastCategory((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -41,6 +42,7 @@ const CastForm = ({ user, obj }) => {
       armour: currentCast.armour,
       adventuringSkills: currentCast.adventuringSkills,
       stamina: currentCast.stamina,
+      castCategory: Number(currentCast.cast_category),
       user_id: user.uid,
     };
     if (obj.id) {
@@ -61,11 +63,13 @@ const CastForm = ({ user, obj }) => {
         armour: obj.armour,
         adventuringSkills: obj.adventuringSkills,
         stamina: obj.stamina,
+        castCategory: obj.castCategory.cast_type.name,
       };
       setCurrentCast(editCast);
     }
+    getCastCategories().then(setcastCategory);
   }, [obj]);
-  console.warn(formInput);
+  console.warn(castCategory);
 
   return (
     <>
@@ -85,6 +89,13 @@ const CastForm = ({ user, obj }) => {
           <Form.Control name="description" required value={currentCast.adventuringSkills} onChange={handleChange} />
           <Form.Label>Stamina</Form.Label>
           <Form.Control name="skill" required value={currentCast.stamina} onChange={handleChange} />
+          <Form.Label>Creature Type</Form.Label>
+          <Form.Select name="castCategory" value={currentCast.cast_category} onChange={handleChange} required>
+            <option value="">Select a Creature Type</option>
+            {castCategory?.map((category) => (
+              <option key={category.id} value={category.id} label={category.cast_type.name} />
+            ))};
+          </Form.Select>
         </Form.Group>
         {/* TODO: create the rest of the input fields */}
 
@@ -110,6 +121,12 @@ CastForm.propTypes = {
     armour: PropTypes.string,
     adventuringSkills: PropTypes.string,
     stamina: PropTypes.string,
+    castCategory: PropTypes.shape({
+      id: PropTypes.number,
+      cast_type: PropTypes.shape({
+        name: PropTypes.string,
+      }),
+    }).isRequired,
   }),
 };
 

@@ -4,6 +4,9 @@
 //   Card, Button, Row, Container, Col,
 // } from 'react-bootstrap';
 
+// import { updateNpc } from '../../api/npcData';
+
+
 // function NpcToken({ npcObj, onUpdate }) {
 //   const removeThisNpc = () => {
 //     const newCastObject = { ...npcObj, campaign_id: '' };

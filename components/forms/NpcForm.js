@@ -17,7 +17,8 @@ const initalState = {
   armour: '',
   adventuringSkills: '',
   stamina: '',
-  npc_type: 0,
+  npc_type: 'null',
+
 };
 
 const NpcForm = ({ obj }) => {

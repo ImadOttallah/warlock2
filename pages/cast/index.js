@@ -7,6 +7,7 @@ import CastCard from '../../components/mainCards/CastCard';
 function Home() {
   const [casts, setCasts] = useState([]);
   const router = useRouter();
+
   const getContent = () => {
     getCast().then((data) => setCasts(data));
   };
@@ -14,7 +15,7 @@ function Home() {
   useEffect(() => {
     getContent();
   }, []);
-
+  console.warn(casts);
   return (
     <article className="cast">
       <h1>Creatures</h1>
@@ -37,6 +38,7 @@ function Home() {
             armour={cast.armour}
             adventuringSkills={cast.adventuring_skills}
             stamina={cast.stamina}
+            castCategory={cast.cast_category}
             onUpdate={getContent}
           />
         </section>
