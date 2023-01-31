@@ -14,6 +14,7 @@ function CastCard({
   adventuringSkills,
   stamina,
   id,
+  castCategory,
   onUpdate,
 }) {
   const deleteThisCast = () => {
@@ -33,12 +34,8 @@ function CastCard({
           <li className="list-group-item">Armour: {armour}</li>
           <li className="list-group-item">Adventuring Skills: {adventuringSkills}</li>
           <li className="list-group-item">Stamina: {stamina}</li>
+          <li className="list-group-item">Category: {castCategory.cast_type.name}</li>
         </ul>
-        <Link href={`/cast/${id}`} passHref>
-          <Button size="sm" variant="dark" className="m-2">
-            VIEW
-          </Button>
-        </Link>
         <Link href={`/cast/edit/${id}`} passHref>
           <Button size="sm" variant="dark">
             EDIT
@@ -61,6 +58,12 @@ CastCard.propTypes = {
   armour: PropTypes.string.isRequired,
   adventuringSkills: PropTypes.string.isRequired,
   stamina: PropTypes.string.isRequired,
+  castCategory: PropTypes.shape({
+    id: PropTypes.number,
+    cast_type: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }).isRequired,
   id: PropTypes.number.isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

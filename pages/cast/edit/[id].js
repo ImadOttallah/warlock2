@@ -5,15 +5,15 @@ import CastForm from '../../../components/forms/CastForm';
 import { getCastById } from '../../../utils/data/castData';
 
 function EditCast() {
-  const [editItem, setEditItem] = useState({});
+  const [cast, setCast] = useState({});
   const { user } = useAuth();
   const router = useRouter();
   const { id } = router.query;
   useEffect(() => {
-    getCastById(id).then(setEditItem);
+    getCastById(id).then(setCast);
   }, [user, router, id]);
   return (
-    <CastForm user={user} eventObj={editItem} />
+    <CastForm user={user} eventObj={cast} />
   );
 }
 
