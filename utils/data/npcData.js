@@ -51,6 +51,11 @@ const updateNpc = (cast, id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getNpcCategories = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/npc_categories`)
+    .then((resp) => resolve(resp.json()))
+    .catch(reject);
+});
 export {
-  getNpc, getNpcById, updateNpc, createNpc, deleteNpc,
+  getNpc, getNpcById, updateNpc, createNpc, deleteNpc, getNpcCategories,
 };

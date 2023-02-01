@@ -14,7 +14,7 @@ function Home() {
   useEffect(() => {
     getContent();
   }, []);
-
+  console.warn(npcs);
   return (
     <article className="npc">
       <h1>Npcs</h1>
@@ -37,6 +37,7 @@ function Home() {
             armour={npc.armour}
             adventuringSkills={npc.adventuring_skills}
             stamina={npc.stamina}
+            npcCategory={npc.npc_category}
             onUpdate={getContent}
           />
         </section>

@@ -6,7 +6,6 @@
 
 // import { updateNpc } from '../../api/npcData';
 
-
 // function NpcToken({ npcObj, onUpdate }) {
 //   const removeThisNpc = () => {
 //     const newCastObject = { ...npcObj, campaign_id: '' };

@@ -29,10 +29,7 @@ function Home() {
       {campaigns.map((campaign) => (
         <section key={`campaign--${campaign.id}`} className="campaign">
           <CampaignsCard
-            id={campaign.id}
-            image={campaign.image}
-            description={campaign.description}
-            name={campaign.name}
+            camObj={campaign}
             onUpdate={getContent}
           />
         </section>
