@@ -4,9 +4,7 @@ import {
   Button, Form,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { createNpc, updateNpc } from '../../utils/data/npcData';
-import { getNpcTypes } from '../../utils/data/npcTypeData';
-import { useAuth } from '../../utils/context/authContext';
+import { createNpc, getNpcCategories, updateNpc } from '../../utils/data/npcData';
 
 const initalState = {
   name: '',
@@ -17,15 +15,14 @@ const initalState = {
   armour: '',
   adventuringSkills: '',
   stamina: '',
-  npc_type: 'null',
+  npcCategory: 0,
 
 };
 
-const NpcForm = ({ obj }) => {
-  const [types, setTypes] = useState([]);
+const NpcForm = ({ user, obj }) => {
+  const [npcCategory, setNpcCategory] = useState([]);
   const [currentNpc, setCurrentNpc] = useState(initalState);
   const router = useRouter();
-  const { user } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,8 +43,8 @@ const NpcForm = ({ obj }) => {
       armour: currentNpc.armour,
       adventuringSkills: currentNpc.adventuringSkills,
       stamina: currentNpc.stamina,
-      npc_type: Number(currentNpc.npc_type),
-      user: user.uid,
+      npcCategory: Number(currentNpc.npc_category),
+      user_id: user.uid,
     };
     if (obj.id) {
       updateNpc(npc, obj.id).then(() => router.push('/npcs'));
@@ -67,12 +64,13 @@ const NpcForm = ({ obj }) => {
         armour: obj.armour,
         adventuringSkills: obj.adventuringSkills,
         stamina: obj.stamina,
-        npc_type: obj.npc_type.id,
+        npcCategory: obj.npcCategory.npc_type.name,
       };
       setCurrentNpc(editNpc);
     }
-    getNpcTypes().then(setTypes);
+    getNpcCategories().then(setNpcCategory);
   }, [obj]);
+  console.warn(npcCategory);
 
   return (
     <>
@@ -96,9 +94,9 @@ const NpcForm = ({ obj }) => {
           <Form.Label controlid="floatingSelect">
             <Form.Select aria-label="type" name="type" onChange={handleChange} className="mb-3" value={currentNpc.npc_type} required>
               <option value="">Select a Type</option>
-              {types?.map((type) => (
-                <option key={type.id} selected={currentNpc.id === type.id} value={type.id}>
-                  {type.name}
+              {npcCategory?.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.npc_type.name}
                 </option>
               ))}
             </Form.Select>
@@ -129,15 +127,18 @@ NpcForm.propTypes = {
     armour: PropTypes.string,
     adventuringSkills: PropTypes.string,
     stamina: PropTypes.string,
-    npc_type: PropTypes.shape({
+    npcCategory: PropTypes.shape({
       id: PropTypes.number,
-      name: PropTypes.string,
-    }),
-  }).isRequired,
+      npc_type: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+      }),
+    }).isRequired,
+  }),
 };
 
-// NpcForm.defaultProps = {
-//   obj: initalState,
-// };
+NpcForm.defaultProps = {
+  obj: initalState,
+};
 
 export default NpcForm;

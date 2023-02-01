@@ -14,6 +14,7 @@ function NpcCard({
   adventuringSkills,
   stamina,
   id,
+  npcCategory,
   onUpdate,
 }) {
   const deleteThisNpc = () => {
@@ -33,6 +34,7 @@ function NpcCard({
           <li className="list-group-item">Armour: {armour}</li>
           <li className="list-group-item">Adventuring Skills: {adventuringSkills}</li>
           <li className="list-group-item">Stamina: {stamina}</li>
+          <li className="list-group-item">Category: {npcCategory.npc_type.name}</li>
         </ul>
         <Link href={`/npc/${id}`} passHref>
           <Button size="sm" variant="dark" className="m-2">
@@ -61,6 +63,12 @@ NpcCard.propTypes = {
   armour: PropTypes.string.isRequired,
   adventuringSkills: PropTypes.string.isRequired,
   stamina: PropTypes.string.isRequired,
+  npcCategory: PropTypes.shape({
+    id: PropTypes.number,
+    npc_type: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }).isRequired,
   id: PropTypes.number.isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

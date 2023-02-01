@@ -25,7 +25,7 @@ const CastForm = ({ user, obj }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setcastCategory((prevState) => ({
+    setCurrentCast((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -49,6 +49,7 @@ const CastForm = ({ user, obj }) => {
       updateCast(cast, obj.id).then(() => router.push('/casts'));
     } else {
       createCast(cast).then(() => router.push('/casts'));
+      console.warn(cast);
     }
   };
 
@@ -69,7 +70,7 @@ const CastForm = ({ user, obj }) => {
     }
     getCastCategories().then(setcastCategory);
   }, [obj]);
-  console.warn(castCategory);
+  console.warn(obj);
 
   return (
     <>

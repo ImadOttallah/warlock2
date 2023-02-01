@@ -25,7 +25,7 @@ const createCast = (cast) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((response) => resolve(response.json()))
     .catch(reject);
 });
 

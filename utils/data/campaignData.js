@@ -55,40 +55,22 @@ const updateCampaigns = (campaign) => new Promise((resolve, reject) => {
 });
 
 // TODO: GET A SINGLE CAMPAIGN'S CHARACTERS
-const getCampaignCharacters = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/characters.json?orderBy="campaign_id"&equalTo="${id}"`)
-    .then((response) => {
-      if (response.data) {
-        resolve(Object.values(response.data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
+const getCampaignCharacters = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/characters`)
+    .then((resp) => resolve(resp.json()))
+    .catch(reject);
 });
 
-const getCampaignCast = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/cast_campaigns"&equalTo="${id}"`)
-    .then((response) => {
-      if (response.data) {
-        resolve(Object.values(response.data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
+const getCampaignCast = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/cast_campaigns`)
+    .then((resp) => resolve(resp.json()))
+    .catch(reject);
 });
 
-const getCampaignNpc = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/npc_campaigns"&equalTo="${id}"`)
-    .then((response) => {
-      if (response.data) {
-        resolve(Object.values(response.data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
+const getCampaignNpc = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/npc_campaigns`)
+    .then((resp) => resolve(resp.json()))
+    .catch(reject);
 });
 
 export {
