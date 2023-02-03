@@ -30,14 +30,9 @@ function Home() {
           <NpcCard
             id={npc.id}
             name={npc.name}
-            description={npc.description}
-            image={npc.image}
-            actions={npc.actions}
-            weapon={npc.weapon}
-            armour={npc.armour}
-            adventuringSkills={npc.adventuring_skills}
+            notes={npc.notes}
             stamina={npc.stamina}
-            npcCategory={npc.npc_category}
+            npccategory={npc.npccategory}
             onUpdate={getContent}
           />
         </section>

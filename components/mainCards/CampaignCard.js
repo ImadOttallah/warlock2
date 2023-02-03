@@ -23,6 +23,10 @@ function CampaignsCard({ camObj, onUpdate }) {
             <p>{`${taco.name}`}</p>
           ))};
           </li>
+          {/* <li className="list-group-item">Npcs: {camObj.npcs?.map((taco) => (
+            <p>{`${taco.name}`}</p>
+          ))};
+          </li> */}
         </ul>
         <Link href={`/campaigns/edit/${camObj.id}`} passHref>
           <Button size="sm" variant="dark">

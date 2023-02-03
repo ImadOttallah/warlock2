@@ -8,44 +8,51 @@ import { createNpc, getNpcCategories, updateNpc } from '../../utils/data/npcData
 
 const initalState = {
   name: '',
-  description: '',
-  image: '',
-  actions: '',
-  weapon: '',
-  armour: '',
-  adventuringSkills: '',
+  notes: '',
   stamina: '',
-  npcCategory: 0,
+  npccategory: {
+    id: 0,
+    npctype: {
+      id: 0,
+      name: '',
+    },
+  },
 
 };
 
 const NpcForm = ({ user, obj }) => {
   const [npcCategory, setNpcCategory] = useState([]);
+  const [desiredNpcCategory, setdesiredNpcCategory] = useState();
   const [currentNpc, setCurrentNpc] = useState(initalState);
   const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCurrentNpc((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    if (name === 'npccategory') {
+      setdesiredNpcCategory(value);
+      setCurrentNpc((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    } else {
+      setCurrentNpc((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+    console.warn(name);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const npc = {
       name: currentNpc.name,
-      description: currentNpc.description,
-      image: currentNpc.image,
-      actions: currentNpc.actions,
-      weapon: currentNpc.weapon,
-      armour: currentNpc.armour,
-      adventuringSkills: currentNpc.adventuringSkills,
+      notes: currentNpc.notes,
       stamina: currentNpc.stamina,
-      npcCategory: Number(currentNpc.npc_category),
+      npccategory: desiredNpcCategory,
       user_id: user.uid,
     };
+    console.warn(npc);
     if (obj.id) {
       updateNpc(npc, obj.id).then(() => router.push('/npcs'));
     } else {
@@ -54,23 +61,20 @@ const NpcForm = ({ user, obj }) => {
   };
 
   useEffect(() => {
-    if (obj?.id) {
+    if (obj.id) {
       const editNpc = {
         name: obj.name,
-        description: obj.description,
-        image: obj.image,
-        actions: obj.actions,
-        weapon: obj.weapon,
-        armour: obj.armour,
-        adventuringSkills: obj.adventuringSkills,
+        notes: obj.notes,
         stamina: obj.stamina,
-        npcCategory: obj.npcCategory.npc_type.name,
+        npccategory: obj.npccategory.npctype,
       };
       setCurrentNpc(editNpc);
     }
     getNpcCategories().then(setNpcCategory);
   }, [obj]);
-  console.warn(npcCategory);
+  // console.warn(obj);
+  // console.warn(npcCategory);
+  // console.warn(currentNpc);
 
   return (
     <>
@@ -78,29 +82,17 @@ const NpcForm = ({ user, obj }) => {
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
           <Form.Control name="name" required value={currentNpc.name} onChange={handleChange} />
-          <Form.Label>Description</Form.Label>
-          <Form.Control name="description" required value={currentNpc.description} onChange={handleChange} />
-          <Form.Label>Image</Form.Label>
-          <Form.Control name="image" required value={currentNpc.image} onChange={handleChange} />
-          <Form.Label>Actions</Form.Label>
-          <Form.Control name="actions" required value={currentNpc.actions} onChange={handleChange} />
-          <Form.Label>Weapon</Form.Label>
-          <Form.Control name="weapon" required value={currentNpc.weapon} onChange={handleChange} />
-          <Form.Label>Adventure Skills</Form.Label>
-          <Form.Control name="adventuringSkills" required value={currentNpc.adventuringSkills} onChange={handleChange} />
+          <Form.Label>Notes</Form.Label>
+          <Form.Control name="notes" required value={currentNpc.notes} onChange={handleChange} />
           <Form.Label>Stamina</Form.Label>
           <Form.Control name="stamina" required value={currentNpc.stamina} onChange={handleChange} />
-          <Form.Label>Type</Form.Label>
-          <Form.Label controlid="floatingSelect">
-            <Form.Select aria-label="type" name="type" onChange={handleChange} className="mb-3" value={currentNpc.npc_type} required>
-              <option value="">Select a Type</option>
-              {npcCategory?.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.npc_type.name}
-                </option>
-              ))}
-            </Form.Select>
-          </Form.Label>
+          <Form.Label>Npc Type</Form.Label>
+          <Form.Select name="npccategory" value={currentNpc.npccategory} onChange={handleChange} required>
+            <option value="">Select a Npc Type</option>
+            {npcCategory?.map((category) => (
+              <option key={category.id} value={category.id} label={category.npctype.name} />
+            ))};
+          </Form.Select>
         </Form.Group>
         {/* TODO: create the rest of the input fields */}
 
@@ -120,16 +112,11 @@ NpcForm.propTypes = {
   obj: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
-    description: PropTypes.string,
-    image: PropTypes.string,
-    actions: PropTypes.string,
-    weapon: PropTypes.string,
-    armour: PropTypes.string,
-    adventuringSkills: PropTypes.string,
+    notes: PropTypes.string,
     stamina: PropTypes.string,
-    npcCategory: PropTypes.shape({
+    npccategory: PropTypes.shape({
       id: PropTypes.number,
-      npc_type: PropTypes.shape({
+      npctype: PropTypes.shape({
         id: PropTypes.number,
         name: PropTypes.string,
       }),

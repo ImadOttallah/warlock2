@@ -8,41 +8,47 @@ import { createCast, getCastCategories, updateCast } from '../../utils/data/cast
 
 const initalState = {
   name: '',
-  description: '',
-  image: '',
-  actions: '',
-  weapon: '',
-  armour: '',
-  adventuringSkills: '',
+  notes: '',
   stamina: '',
-  castCategory: 0,
+  castcategory: {
+    id: 0,
+    casttype: {
+      id: 0,
+      name: '',
+    },
+  },
 };
 
 const CastForm = ({ user, obj }) => {
   const [castCategory, setcastCategory] = useState([]);
+  const [desiredCastCategory, setdesiredCastCategory] = useState();
   const [currentCast, setCurrentCast] = useState([initalState]);
   const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCurrentCast((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    if (name === 'castcategory') {
+      setdesiredCastCategory(value);
+      setCurrentCast((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    } else {
+      setCurrentCast((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+    console.warn(name);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const cast = {
       name: currentCast.name,
-      description: currentCast.description,
-      image: currentCast.image,
-      actions: currentCast.actions,
-      weapon: currentCast.weapon,
-      armour: currentCast.armour,
-      adventuringSkills: currentCast.adventuringSkills,
+      notes: currentCast.notes,
       stamina: currentCast.stamina,
-      castCategory: Number(currentCast.cast_category),
+      castcategory: desiredCastCategory,
       user_id: user.uid,
     };
     if (obj.id) {
@@ -50,6 +56,7 @@ const CastForm = ({ user, obj }) => {
     } else {
       createCast(cast).then(() => router.push('/casts'));
       console.warn(cast);
+      console.warn(castCategory);
     }
   };
 
@@ -57,14 +64,9 @@ const CastForm = ({ user, obj }) => {
     if (obj.id) {
       const editCast = {
         name: obj.name,
-        description: obj.description,
-        image: obj.image,
-        actions: obj.actions,
-        weapon: obj.weapon,
-        armour: obj.armour,
-        adventuringSkills: obj.adventuringSkills,
+        notes: obj.notes,
         stamina: obj.stamina,
-        castCategory: obj.castCategory.cast_type.name,
+        castcategory: obj.castcategory.casttype,
       };
       setCurrentCast(editCast);
     }
@@ -78,23 +80,15 @@ const CastForm = ({ user, obj }) => {
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
           <Form.Control name="name" required value={currentCast.name} onChange={handleChange} />
-          <Form.Label>Description</Form.Label>
-          <Form.Control name="description" required value={currentCast.description} onChange={handleChange} />
-          <Form.Label>Image</Form.Label>
-          <Form.Control name="image" required value={currentCast.image} onChange={handleChange} />
-          <Form.Label>Actions</Form.Label>
-          <Form.Control name="actions" required value={currentCast.actions} onChange={handleChange} />
-          <Form.Label>Weapon</Form.Label>
-          <Form.Control name="weapon" required value={currentCast.weapon} onChange={handleChange} />
-          <Form.Label>Adventure Skills</Form.Label>
-          <Form.Control name="description" required value={currentCast.adventuringSkills} onChange={handleChange} />
+          <Form.Label>Notes</Form.Label>
+          <Form.Control name="notes" required value={currentCast.notes} onChange={handleChange} />
           <Form.Label>Stamina</Form.Label>
-          <Form.Control name="skill" required value={currentCast.stamina} onChange={handleChange} />
+          <Form.Control name="stamina" required value={currentCast.stamina} onChange={handleChange} />
           <Form.Label>Creature Type</Form.Label>
-          <Form.Select name="castCategory" value={currentCast.cast_category} onChange={handleChange} required>
+          <Form.Select name="castcategory" value={currentCast.castcategory} onChange={handleChange} required>
             <option value="">Select a Creature Type</option>
             {castCategory?.map((category) => (
-              <option key={category.id} value={category.id} label={category.cast_type.name} />
+              <option key={category.id} value={category.id} label={category.casttype.name} />
             ))};
           </Form.Select>
         </Form.Group>
@@ -116,15 +110,11 @@ CastForm.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     description: PropTypes.string,
-    image: PropTypes.string,
-    actions: PropTypes.string,
-    weapon: PropTypes.string,
-    armour: PropTypes.string,
-    adventuringSkills: PropTypes.string,
+    notes: PropTypes.string,
     stamina: PropTypes.string,
-    castCategory: PropTypes.shape({
+    castcategory: PropTypes.shape({
       id: PropTypes.number,
-      cast_type: PropTypes.shape({
+      casttype: PropTypes.shape({
         name: PropTypes.string,
       }),
     }).isRequired,

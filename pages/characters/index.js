@@ -14,7 +14,7 @@ function Home() {
   useEffect(() => {
     getContent();
   }, []);
-
+  console.warn(characters);
   return (
     <article className="characters">
       <h1>Characters</h1>
@@ -29,48 +29,8 @@ function Home() {
         <section key={`character--${character.id}`} className="characters">
           <CharactersCard
             id={character.id}
-            name={character.name}
             image={character.image}
-            community={character.community}
-            background={character.background}
-            career={character.career}
-            stamina={character.stamina}
-            luck={character.luck}
-            pluck={character.pluck}
-            appraiseSkill={character.appraise_skill}
-            athleticsSkill={character.athletics_skill}
-            bargainSkill={character.bargain_skill}
-            bluntSkill={character.blunt_skill}
-            bowSkill={character.bow_skill}
-            brawlingSkill={character.brawling_skill}
-            commandSkill={character.command_skill}
-            crossbowSkill={character.crossbow_skill}
-            diplomacySkill={character.diplomacy_skill}
-            disguiseSkill={character.disguise_skill}
-            dodgeSkill={character.dodge_skill}
-            enduranceSkill={character.endurance_skill}
-            historySkill={character.history_skill}
-            incantationSkill={character.incantation_skill}
-            intimidateSkill={character.intimidate_skill}
-            languageSkill={character.language_skill}
-            largeBladeSkill={character.large_blade_skill}
-            lieSkill={character.lie_skill}
-            medicineSkill={character.medicine_skill}
-            navigationSkill={character.navigation_skill}
-            ostlerSkill={character.ostler_skill}
-            persuasionSkill={character.persuasion_skill}
-            poleArmSkill={character.pole_arm_skill}
-            repairSkill={character.repair_skill}
-            sleightOfHandSkill={character.sleight_of_hand_skill}
-            smallBladeSkill={character.small_blade_skill}
-            spotSkill={character.spot_skill}
-            stealthSkill={character.stealth_skill}
-            streetwiseSkill={character.streetwise_skill}
-            survivalSkill={character.survival_skill}
-            swimmingSkill={character.swimming_skill}
-            thrownSkill={character.thrown_skill}
-            possesions={character.possesions}
-            weapons={character.weapons}
+            name={character.name}
             traits={character.traits}
             notes={character.notes}
             spells={character.spells}

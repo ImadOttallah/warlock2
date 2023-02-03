@@ -13,7 +13,7 @@ function EditCharacter() {
     getCharactersById(id).then(setEditItem);
   }, [user, router, id]);
   return (
-    <CharactersForm user={user} eventObj={editItem} />
+    <CharactersForm user={user} obj={editItem} />
   );
 }
 

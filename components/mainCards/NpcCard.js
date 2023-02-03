@@ -6,15 +6,10 @@ import { deleteNpc } from '../../utils/data/npcData';
 
 function NpcCard({
   name,
-  description,
-  image,
-  actions,
-  weapon,
-  armour,
-  adventuringSkills,
+  notes,
   stamina,
   id,
-  npcCategory,
+  npccategory,
   onUpdate,
 }) {
   const deleteThisNpc = () => {
@@ -24,17 +19,13 @@ function NpcCard({
   };
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={image} alt={name} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title> {name}</Card.Title>
         <ul className="list-group">
-          <li className="list-group-item">Description: {description}</li>
-          <li className="list-group-item">Actions: {actions}</li>
-          <li className="list-group-item">Weapon: {weapon}</li>
-          <li className="list-group-item">Armour: {armour}</li>
-          <li className="list-group-item">Adventuring Skills: {adventuringSkills}</li>
+          <li className="list-group-item">Name: {name}</li>
+          <li className="list-group-item">Notes: {notes}</li>
           <li className="list-group-item">Stamina: {stamina}</li>
-          <li className="list-group-item">Category: {npcCategory.npc_type.name}</li>
+          <li className="list-group-item">Category: {npccategory.npctype.name}</li>
         </ul>
         <Link href={`/npc/${id}`} passHref>
           <Button size="sm" variant="dark" className="m-2">
@@ -56,16 +47,11 @@ function NpcCard({
 
 NpcCard.propTypes = {
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  actions: PropTypes.string.isRequired,
-  weapon: PropTypes.string.isRequired,
-  armour: PropTypes.string.isRequired,
-  adventuringSkills: PropTypes.string.isRequired,
+  notes: PropTypes.string.isRequired,
   stamina: PropTypes.string.isRequired,
-  npcCategory: PropTypes.shape({
+  npccategory: PropTypes.shape({
     id: PropTypes.number,
-    npc_type: PropTypes.shape({
+    npctype: PropTypes.shape({
       name: PropTypes.string,
     }),
   }).isRequired,
