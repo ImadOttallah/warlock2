@@ -16,5 +16,5 @@ function EditNpc() {
     <NpcForm user={user} obj={npc} />
   );
 }
-
+// change npcObj to obj
 export default EditNpc;

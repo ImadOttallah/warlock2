@@ -38,7 +38,7 @@ const CampaignsForm = ({ user, obj }) => {
     };
     console.warn(campaign);
     if (obj?.id) {
-      updateCampaigns(campaign, obj.id).then(() => router.push('/campaigns'));
+      updateCampaigns(campaign, obj.id).then(() => router.push('/campaign'));
     } else {
       createCampaign(campaign).then(() => router.push('/campaigns'));
     }

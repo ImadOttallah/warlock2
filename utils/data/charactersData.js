@@ -57,22 +57,22 @@ const deleteCharacters = (id) => new Promise((resolve, reject) => {
 });
 
 // UPDATE CHARACTERS
-const updateCharacters = (character) => new Promise((resolve, reject) => {
-  const charObj = {
-    id: character.id,
-    name: character.name,
-    image: character.image,
-    traits: character.traits,
-    notes: character.notes,
-    spells: character.spells,
-    user: character.user_id,
-  };
-  fetch(`${clientCredentials.databaseURL}/characters/${character.id}`, {
+const updateCharacters = (character, id) => new Promise((resolve, reject) => {
+  // const charObj = {
+  //   id: character.id,
+  //   name: character.name,
+  //   image: character.image,
+  //   traits: character.traits,
+  //   notes: character.notes,
+  //   spells: character.spells,
+  //   user: character.user_id,
+  // };
+  fetch(`${clientCredentials.databaseURL}/characters/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(charObj),
+    body: JSON.stringify(character),
   })
     .then((response) => resolve(response.data))
     .catch(reject);

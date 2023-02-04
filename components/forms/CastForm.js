@@ -21,7 +21,7 @@ const initalState = {
 
 const CastForm = ({ user, obj }) => {
   const [castCategory, setcastCategory] = useState([]);
-  const [desiredCastCategory, setdesiredCastCategory] = useState();
+  const [desiredCastCategory, setdesiredCastCategory] = useState([]);
   const [currentCast, setCurrentCast] = useState([initalState]);
   const router = useRouter();
 
@@ -52,7 +52,7 @@ const CastForm = ({ user, obj }) => {
       user_id: user.uid,
     };
     if (obj.id) {
-      updateCast(cast, obj.id).then(() => router.push('/casts'));
+      updateCast(cast, obj.id).then(() => router.push('/cast'));
     } else {
       createCast(cast).then(() => router.push('/casts'));
       console.warn(cast);
@@ -85,10 +85,22 @@ const CastForm = ({ user, obj }) => {
           <Form.Label>Stamina</Form.Label>
           <Form.Control name="stamina" required value={currentCast.stamina} onChange={handleChange} />
           <Form.Label>Creature Type</Form.Label>
-          <Form.Select name="castcategory" value={currentCast.castcategory} onChange={handleChange} required>
+
+          <Form.Select
+            name="castcategory"
+            value={currentCast.castcategory}
+            onChange={handleChange}
+            required
+          >
             <option value="">Select a Creature Type</option>
+
             {castCategory?.map((category) => (
-              <option key={category.id} value={category.id} label={category.casttype.name} />
+              <option
+                key={category.id}
+                value={category.id}
+              >
+                {category.casttype.name}
+              </option>
             ))};
           </Form.Select>
         </Form.Group>

@@ -49,7 +49,6 @@ const CharactersForm = ({ user, obj }) => {
         name: obj.name,
         image: obj.image,
         notes: obj.notes,
-        stamina: obj.stamina,
         spells: obj.spells,
         traits: obj.traits,
         // user_id: user.uid,

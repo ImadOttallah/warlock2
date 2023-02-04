@@ -21,12 +21,12 @@ function CampaignsCard({ camObj, onUpdate }) {
           <li className="list-group-item">Description: {camObj.description}</li>
           <li className="list-group-item">Creatures: {camObj.casts?.map((taco) => (
             <p>{`${taco.name}`}</p>
-          ))};
+          ))}
           </li>
-          {/* <li className="list-group-item">Npcs: {camObj.npcs?.map((taco) => (
+          <li className="list-group-item">Npcs: {camObj.npcs?.map((taco) => (
             <p>{`${taco.name}`}</p>
-          ))};
-          </li> */}
+          ))}
+          </li>
         </ul>
         <Link href={`/campaigns/edit/${camObj.id}`} passHref>
           <Button size="sm" variant="dark">
@@ -42,30 +42,40 @@ function CampaignsCard({ camObj, onUpdate }) {
 }
 
 CampaignsCard.propTypes = {
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  castCampaign: PropTypes.shape({
+  image: PropTypes.string,
+  name: PropTypes.string,
+  description: PropTypes.string,
+  castcampaign: PropTypes.shape({
     id: PropTypes.number,
     cast: PropTypes.shape({
+      id: PropTypes.number,
       name: PropTypes.string,
-      description: PropTypes.string,
-      image: PropTypes.string,
-      actions: PropTypes.string,
-      weapon: PropTypes.string,
-      armour: PropTypes.string,
-      adventuringSkills: PropTypes.string,
+      notes: PropTypes.string,
       stamina: PropTypes.string,
-      castCategory: PropTypes.shape({
+      castcategory: PropTypes.shape({
         id: PropTypes.number,
-        cast_type: PropTypes.shape({
+        casttype: PropTypes.shape({
+          id: PropTypes.number,
           name: PropTypes.string,
         }),
       }),
     }),
-  }).isRequired,
+    npc: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      notes: PropTypes.string,
+      stamina: PropTypes.string,
+      npccategory: PropTypes.shape({
+        id: PropTypes.number,
+        npctype: PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string,
+        }),
+      }),
+    }),
+  }),
   id: PropTypes.number.isRequired,
   onUpdate: PropTypes.func.isRequired,
-};
+}.isRequired;
 
 export default CampaignsCard;
