@@ -13,7 +13,7 @@ function EditCast() {
     getCastById(id).then(setCast);
   }, [user, router, id]);
   return (
-    <CastForm user={user} eventObj={cast} />
+    <CastForm user={user} obj={cast} />
   );
 }
 

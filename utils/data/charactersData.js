@@ -15,10 +15,28 @@ const getCharactersById = (id) => new Promise((resolve, reject) => {
 });
 
 // CREATE CAMPAIGNS
-const createCharacters = (campaign) => new Promise((resolve, reject) => {
+const createCharacters = (character) => new Promise((resolve, reject) => {
+//   const obj = {
+//     name: character.name,
+//     image: character.image,
+//     traits: character.traits,
+//     notes: character.notes,
+//     spells: character.spells,
+//     user: character.id,
+//   };
+//   fetch(`${clientCredentials.databaseURL}/characters`, {
+//     method: 'POST',
+//     body: JSON.stringify(obj),
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   })
+//     .then((response) => resolve(response.json()))
+//     .catch((error) => reject(error));
+// });
   fetch(`${clientCredentials.databaseURL}/characters`, {
     method: 'POST',
-    body: JSON.stringify(campaign),
+    body: JSON.stringify(character),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -39,8 +57,17 @@ const deleteCharacters = (id) => new Promise((resolve, reject) => {
 });
 
 // UPDATE CHARACTERS
-const updateCharacters = (character) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/characters/${character.id}`, {
+const updateCharacters = (character, id) => new Promise((resolve, reject) => {
+  // const charObj = {
+  //   id: character.id,
+  //   name: character.name,
+  //   image: character.image,
+  //   traits: character.traits,
+  //   notes: character.notes,
+  //   spells: character.spells,
+  //   user: character.user_id,
+  // };
+  fetch(`${clientCredentials.databaseURL}/characters/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

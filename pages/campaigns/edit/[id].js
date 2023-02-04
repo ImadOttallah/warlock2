@@ -5,15 +5,15 @@ import CampaignsForm from '../../../components/forms/CampaignsForm';
 import { getCampaignById } from '../../../utils/data/campaignData';
 
 function EditCampaign() {
-  const [editItem, setEditItem] = useState({});
+  const [campaign, setCampaign] = useState({});
   const { user } = useAuth();
   const router = useRouter();
   const { id } = router.query;
   useEffect(() => {
-    getCampaignById(id).then(setEditItem);
+    getCampaignById(id).then(setCampaign);
   }, [user, router, id]);
   return (
-    <CampaignsForm user={user} eventObj={editItem} />
+    <CampaignsForm user={user} obj={campaign} />
   );
 }
 

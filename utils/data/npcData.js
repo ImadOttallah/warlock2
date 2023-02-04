@@ -16,6 +16,11 @@ const getNpcById = (id) => new Promise((resolve, reject) => {
 
 // CREATE CAST
 const createNpc = (npc) => new Promise((resolve, reject) => {
+  // const npcObj = {
+  //   name: npc.name,
+  //   notes: npc.type,
+  //   stamina: npc.stamina,
+  //   npccategory: npc.npccategory_id,
   fetch(`${clientCredentials.databaseURL}/npcs`, {
     method: 'POST',
     body: JSON.stringify(npc),

@@ -5,16 +5,16 @@ import NpcForm from '../../../components/forms/NpcForm';
 import { getNpcById } from '../../../utils/data/npcData';
 
 function EditNpc() {
-  const [editItem, setEditItem] = useState({});
+  const [npc, setNpc] = useState({});
   const { user } = useAuth();
   const router = useRouter();
   const { id } = router.query;
   useEffect(() => {
-    getNpcById(id).then(setEditItem);
+    getNpcById(id).then(setNpc);
   }, [user, router, id]);
   return (
-    <NpcForm user={user} eventObj={editItem} />
+    <NpcForm user={user} obj={npc} />
   );
 }
-
+// change npcObj to obj
 export default EditNpc;

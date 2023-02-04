@@ -6,15 +6,10 @@ import { deleteCast } from '../../utils/data/castData';
 
 function CastCard({
   name,
-  description,
-  image,
-  actions,
-  weapon,
-  armour,
-  adventuringSkills,
+  notes,
   stamina,
   id,
-  castCategory,
+  castcategory,
   onUpdate,
 }) {
   const deleteThisCast = () => {
@@ -24,17 +19,13 @@ function CastCard({
   };
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={image} alt={name} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title> {name}</Card.Title>
         <ul className="list-group">
-          <li className="list-group-item">Description: {description}</li>
-          <li className="list-group-item">Actions: {actions}</li>
-          <li className="list-group-item">Weapon: {weapon}</li>
-          <li className="list-group-item">Armour: {armour}</li>
-          <li className="list-group-item">Adventuring Skills: {adventuringSkills}</li>
+          <li className="list-group-item">Name: {name}</li>
+          <li className="list-group-item">Notes: {notes}</li>
           <li className="list-group-item">Stamina: {stamina}</li>
-          <li className="list-group-item">Category: {castCategory.cast_type.name}</li>
+          <li className="list-group-item">Category: {castcategory.casttype.name}</li>
         </ul>
         <Link href={`/cast/edit/${id}`} passHref>
           <Button size="sm" variant="dark">
@@ -51,16 +42,11 @@ function CastCard({
 
 CastCard.propTypes = {
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  actions: PropTypes.string.isRequired,
-  weapon: PropTypes.string.isRequired,
-  armour: PropTypes.string.isRequired,
-  adventuringSkills: PropTypes.string.isRequired,
+  notes: PropTypes.string.isRequired,
   stamina: PropTypes.string.isRequired,
-  castCategory: PropTypes.shape({
+  castcategory: PropTypes.shape({
     id: PropTypes.number,
-    cast_type: PropTypes.shape({
+    casttype: PropTypes.shape({
       name: PropTypes.string,
     }),
   }).isRequired,

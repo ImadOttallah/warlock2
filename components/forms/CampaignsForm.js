@@ -10,7 +10,8 @@ const initalState = {
   name: '',
   image: '',
   description: '',
-  castCampaign: 0,
+  // date_created: '',
+  // castCampaign: 0,
 };
 const CampaignsForm = ({ user, obj }) => {
   const [campaignCast, setCampaignCast] = useState([]);
@@ -30,14 +31,14 @@ const CampaignsForm = ({ user, obj }) => {
     const campaign = {
       name: currentCampaign.name,
       image: currentCampaign.image,
-      dateCreated: currentCampaign.dateCreated,
+      // date_created: new Date().toLocaleDateString(),
       description: currentCampaign.description,
-      castCampaign: Number(currentCampaign.cast_campaign),
+      // castCampaign: Number(currentCampaign.cast_campaign),
       user_id: user.uid,
     };
     console.warn(campaign);
     if (obj?.id) {
-      updateCampaigns(campaign, obj.id).then(() => router.push('/campaigns'));
+      updateCampaigns(campaign, obj.id).then(() => router.push('/campaign'));
     } else {
       createCampaign(campaign).then(() => router.push('/campaigns'));
     }
@@ -49,7 +50,7 @@ const CampaignsForm = ({ user, obj }) => {
         name: obj.name,
         image: obj.image,
         description: obj.description,
-        castCampaign: obj.castCampaign.cast.name,
+        // castCampaign: obj.castCampaign.cast.name,
       };
       setCurrentCampaign(editCampaign);
     }
@@ -67,13 +68,13 @@ const CampaignsForm = ({ user, obj }) => {
           <Form.Control name="image" required value={currentCampaign.image} onChange={handleChange} />
           <Form.Label>Description</Form.Label>
           <Form.Control name="description" required value={currentCampaign.description} onChange={handleChange} />
-          <Form.Label>Campaign Cast</Form.Label>
+          {/* <Form.Label>Campaign Cast</Form.Label>
           <Form.Select name="currentCampaign" value={currentCampaign.cast_campaign} onChange={handleChange} required>
             <option value="">Select a Campaign Cast</option>
             {campaignCast?.map((cast) => (
               <option key={cast.id} value={cast.id} label={cast.cast.name} />
             ))};
-          </Form.Select>
+          </Form.Select> */}
         </Form.Group>
         {/* TODO: create the rest of the input fields */}
 
